@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Menu, Close } from "./icons";
 import { useState } from "react";
 
@@ -10,17 +11,17 @@ const Navbar = () => {
   const menuItems = [
     {
       name: "For Creator",
-      href: "#",
+      href: "/creator",
     },
     {
       name: "For Influencer",
-      href: "#",
+      href: "/influencer",
     },
   ];
   return (
     <header className="relative w-full border-b bg-white py-2">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
-        <div className="inline-flex items-center space-x-2">
+        <Link href="/" className="inline-flex items-center space-x-2">
           <span>
             <svg
               width="30"
@@ -36,17 +37,17 @@ const Navbar = () => {
             </svg>
           </span>
           <span className="font-bold">ChainWise</span>
-        </div>
+        </Link>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
+                <Link
                   href={item.href}
                   className="text-sm font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
