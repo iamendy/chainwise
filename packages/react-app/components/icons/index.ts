@@ -9,6 +9,9 @@ import ChevronRight from "./ChevronRight";
 import Milestone from "./Milestone";
 import Add from "./Add";
 import Trash from "./Trash";
+import Tasks from "./Tasks";
+import Completed from "./Completed";
+import Card from "./Card";
 
 export {
   Menu,
@@ -22,4 +25,7 @@ export {
   Milestone,
   Add,
   Trash,
+  Tasks,
+  Completed,
+  Card,
 };
