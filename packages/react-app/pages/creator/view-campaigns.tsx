@@ -1,48 +1,16 @@
-import CreatorLayout from "../../components/layouts/CreatorLayout";
-import { Tasks, Completed, Card, Twitter } from "../../components/icons";
 import Link from "next/link";
+import CreatorLayout from "../../components/layouts/CreatorLayout";
+import { Twitter } from "../../components/icons";
 
-const Dashboard = () => {
+const ViewCampaigns = () => {
   return (
     <CreatorLayout>
-      <div className="flex justify-between items-center">
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
-            <Tasks />
-          </div>
-          <div>
-            <b>04</b>
-            <p className="text-[14px]">Ongoing campaigns</p>
-          </div>
-        </div>
-
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
-            <Completed />
-          </div>
-          <div>
-            <b>02</b>
-            <p className="text-[14px]">Completed campaigns</p>
-          </div>
-        </div>
-
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
-            <Card />
-          </div>
-          <div>
-            <b>5 CELO</b>
-            <p className="text-[14px]"> Marketing goals </p>
-          </div>
-        </div>
-      </div>
-
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
         <h3 className=" mb-4">Ongoing Campaigns</h3>
 
         <div className="lg:grid lg:grid-cols-2 gap-x-3">
           <Link
-            href="/creator/view-campaign/5"
+            href="/creator/view-campaign/1"
             className="border rounded-lg p-2"
           >
             <div>
@@ -70,7 +38,7 @@ const Dashboard = () => {
           </Link>
 
           <Link
-            href="/creator/view-campaign/3"
+            href="/creator/view-campaign/2"
             className="border rounded-lg p-2"
           >
             <div>
@@ -110,10 +78,7 @@ const Dashboard = () => {
           </Link>
         </div>
       </div>
-
-      <div></div>
     </CreatorLayout>
   );
 };
-
-export default Dashboard;
+export default ViewCampaigns;

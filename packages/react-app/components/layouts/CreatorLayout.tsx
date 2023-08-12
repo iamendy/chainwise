@@ -14,8 +14,8 @@ const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
               Create campaign
             </Link>
 
-            <Link href="#" className="px-4 py-2 border">
-              View campaign
+            <Link href="/creator/view-campaigns" className="px-4 py-2 border">
+              View campaigns
             </Link>
 
             <Link href="#" className="px-4 py-2 border">
