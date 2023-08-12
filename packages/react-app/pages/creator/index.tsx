@@ -47,6 +47,7 @@ const Dashboard = () => {
         <div className="bg-gray-50 border rounded-lg p-2 mb-4 flex gap-x-2">
           {tabs.map((d, i) => (
             <h3
+              key={i}
               onClick={() => setSelectedTab(d)}
               className={`${
                 selectedTab == d && "bg-gray-600 text-white"
