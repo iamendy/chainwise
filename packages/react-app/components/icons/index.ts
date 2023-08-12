@@ -14,6 +14,8 @@ import Completed from "./Completed";
 import Card from "./Card";
 import Twitter from "./Twitter";
 import Bolt from "./Bolt";
+import Select from "./Select";
+import Check from "./Check";
 
 export {
   Menu,
@@ -32,4 +34,6 @@ export {
   Card,
   Twitter,
   Bolt,
+  Select,
+  Check,
 };
