@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
+const InfluencerLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className="mx-auto max-w-7xl flex gap-x-4 px-4 pt-5">
       <aside className="hidden lg:block w-[30%] bg-gray-50 py-8 rounded-md">
@@ -31,4 +31,4 @@ const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
     </section>
   );
 };
-export default CreatorLayout;
+export default InfluencerLayout;
