@@ -12,6 +12,7 @@ import Trash from "./Trash";
 import Tasks from "./Tasks";
 import Completed from "./Completed";
 import Card from "./Card";
+import Twitter from "./Twitter";
 
 export {
   Menu,
@@ -28,4 +29,5 @@ export {
   Tasks,
   Completed,
   Card,
+  Twitter,
 };
