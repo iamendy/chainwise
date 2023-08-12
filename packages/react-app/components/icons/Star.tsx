@@ -1,4 +1,4 @@
-const Star = () => {
+const Star = ({ big = false }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ const Star = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-3 h-3"
+      className={`${big ? "w-6 h-6" : "w-3 h-3"}`}
     >
       <path
         strokeLinecap="round"

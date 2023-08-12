@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Menu, Close } from "./icons";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { pathname } = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,16 +42,30 @@ const Navbar = () => {
         </Link>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
-            {menuItems.map((item) => (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className="text-sm font-semibold text-gray-800 hover:text-gray-900"
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link
+                href="/creator"
+                className={`text-sm font-semibold text-gray-800 hover:text-gray-900 pb-2 inline-block
+                  ${
+                    pathname?.includes("creator") && "border-b border-b-black"
+                  }`}
+              >
+                For Creator
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/influencer"
+                className={`text-sm font-semibold text-gray-800 hover:text-gray-900 pb-2 inline-block
+                  ${
+                    pathname?.includes("influencer") &&
+                    "border-b border-b-black"
+                  }`}
+              >
+                For Influencer
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="hidden lg:block">

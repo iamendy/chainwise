@@ -122,7 +122,7 @@ const ViewCampaign = () => {
               <p className="text-gray-900">Lorem ipsum dolor sit amet.</p>
 
               <div className="bg-gray-50 border rounded-md px-2 py-1">
-                Confirm delivery?
+                Mark this as done?
                 <br />
                 <button className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm">
                   Yes

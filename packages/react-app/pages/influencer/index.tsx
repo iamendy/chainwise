@@ -1,10 +1,27 @@
-import CreatorLayout from "../../components/layouts/CreatorLayout";
-import { Tasks, Completed, Card, Twitter, Bolt } from "../../components/icons";
 import Link from "next/link";
+import {
+  Bolt,
+  Card,
+  Completed,
+  Star,
+  Tasks,
+  Twitter,
+} from "../../components/icons";
+import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 
 const Dashboard = () => {
   return (
-    <CreatorLayout>
+    <InfluencerLayout>
+      <div className="mb-6">
+        <h3>Welcome, 0x323</h3>
+
+        <div className="flex">
+          <Star big={true} />
+          <Star big={true} />
+          <Star big={true} />
+          <Star big={true} />
+        </div>
+      </div>
       <div className="flex justify-between items-center">
         <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
           <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
@@ -32,17 +49,13 @@ const Dashboard = () => {
           </div>
           <div>
             <b>5 CELO</b>
-            <p className="text-[14px]"> Marketing goals </p>
+            <p className="text-[14px]"> Earned Promotions </p>
           </div>
         </div>
       </div>
 
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
         <div className="bg-gray-50 border rounded-lg p-2 mb-4 flex gap-x-2">
-          <h3 className=" w-fit text-black rounded-md leading-none p-2 cursor-pointer hover:bg-gray-600 hover:text-white">
-            Pending Campaigns
-          </h3>
-
           <h3 className="bg-gray-600 w-fit text-white rounded-md leading-none p-2 cursor-pointer">
             Ongoing Campaigns
           </h3>
@@ -54,7 +67,7 @@ const Dashboard = () => {
 
         <div className="lg:grid lg:grid-cols-2 gap-x-3">
           <Link
-            href="/creator/view-campaign/5"
+            href="/influencer/view-campaign/5"
             className="border rounded-lg p-2"
           >
             <div>
@@ -82,7 +95,7 @@ const Dashboard = () => {
           </Link>
 
           <Link
-            href="/creator/view-campaign/3"
+            href="/influencer/view-campaign/3"
             className="border rounded-lg p-2 relative"
           >
             <div className="absolute top-2 right-2">
@@ -119,18 +132,10 @@ const Dashboard = () => {
 
         {/* If no campaigns found */}
         <div className="text-center mt-4">
-          <p>No Campaigns yet</p>
-
-          <Link
-            href="/creator/create-campaign"
-            className="bg-black inline-block text-white rounded-md leading-none py-2 px-4 mt-4 hover:bg-black/80"
-          >
-            Create campaign
-          </Link>
+          <p>No active campaigns</p>
         </div>
       </div>
-    </CreatorLayout>
+    </InfluencerLayout>
   );
 };
-
 export default Dashboard;
