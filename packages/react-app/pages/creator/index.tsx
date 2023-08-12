@@ -1,5 +1,5 @@
 import CreatorLayout from "../../components/layouts/CreatorLayout";
-import { Tasks, Completed, Card, Twitter } from "../../components/icons";
+import { Tasks, Completed, Card, Twitter, Bolt } from "../../components/icons";
 import Link from "next/link";
 
 const Dashboard = () => {
@@ -38,7 +38,19 @@ const Dashboard = () => {
       </div>
 
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
-        <h3 className=" mb-4">Ongoing Campaigns</h3>
+        <div className="bg-gray-50 border rounded-lg p-2 mb-4 flex gap-x-2">
+          <h3 className=" w-fit text-black rounded-md leading-none p-2 cursor-pointer hover:bg-gray-600 hover:text-white">
+            Pending Campaigns
+          </h3>
+
+          <h3 className="bg-gray-600 w-fit text-white rounded-md leading-none p-2 cursor-pointer">
+            Ongoing Campaigns
+          </h3>
+
+          <h3 className=" w-fit text-black rounded-md leading-none p-2 cursor-pointer hover:bg-gray-600 hover:text-white">
+            Completed Campaigns
+          </h3>
+        </div>
 
         <div className="lg:grid lg:grid-cols-2 gap-x-3">
           <Link
@@ -53,7 +65,7 @@ const Dashboard = () => {
                 </small>
               </div>
               <p className="text-gray-400">
-                influencer <b className="text-black">@frankdegods</b>
+                influencer <b className="text-black text-sm">@frankdegods</b>
               </p>
 
               <div className="flex items-center gap-x-2 mt-2">
@@ -71,8 +83,15 @@ const Dashboard = () => {
 
           <Link
             href="/creator/view-campaign/3"
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 relative"
           >
+            <div className="absolute top-2 right-2">
+              <div className="bg-slate-200 w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
+                <Bolt />
+                <span className="text-sm font-semibold">2</span>
+              </div>
+            </div>
+
             <div>
               <div>
                 <b>ByBit Network</b> <br />
@@ -81,7 +100,7 @@ const Dashboard = () => {
                 </small>
               </div>
               <p className="text-gray-400">
-                influencer <b className="text-black">@frankdegods</b>
+                influencer <b className="text-black text-sm">Not assigned</b>
               </p>
 
               <div className="flex items-center gap-x-2 mt-2">

@@ -13,6 +13,7 @@ import Tasks from "./Tasks";
 import Completed from "./Completed";
 import Card from "./Card";
 import Twitter from "./Twitter";
+import Bolt from "./Bolt";
 
 export {
   Menu,
@@ -30,4 +31,5 @@ export {
   Completed,
   Card,
   Twitter,
+  Bolt,
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CreatorLayout from "../../components/layouts/CreatorLayout";
-import { Twitter } from "../../components/icons";
+import { Bolt, Twitter } from "../../components/icons";
 
 const ViewCampaigns = () => {
   return (
@@ -11,8 +11,15 @@ const ViewCampaigns = () => {
         <div className="lg:grid lg:grid-cols-2 gap-x-3">
           <Link
             href="/creator/view-campaign/1"
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 relative"
           >
+            <div className="absolute top-2 right-2">
+              <div className="bg-slate-200 w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
+                <Bolt />
+                <span className="text-sm font-semibold">2</span>
+              </div>
+            </div>
+
             <div>
               <div>
                 <b>ByBit Network</b> <br />
@@ -38,8 +45,8 @@ const ViewCampaigns = () => {
           </Link>
 
           <Link
-            href="/creator/view-campaign/2"
-            className="border rounded-lg p-2"
+            href="/creator/view-campaign/1"
+            className="border rounded-lg p-2 relative"
           >
             <div>
               <div>
