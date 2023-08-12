@@ -1,5 +1,12 @@
-import { Milestone, ChevronRight, Cart, Add, Trash } from "../components/icons";
+import {
+  Milestone,
+  ChevronRight,
+  Cart,
+  Add,
+  Trash,
+} from "../../components/icons";
 import { useState } from "react";
+import CreatorLayout from "../../components/layouts/CreatorLayout";
 
 const steps = ["Milestone", "Payment"];
 
@@ -30,8 +37,8 @@ const Creator = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-7xl bg-gray-50 py-2">
-      <div className="mx-auto my-4 max-w-2xl md:my-6">
+    <CreatorLayout>
+      <div className="">
         {/* breadcrumb */}
         <nav className="mb-8 flex" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
@@ -58,6 +65,7 @@ const Creator = () => {
             ))}
           </ol>
         </nav>
+
         {/* Form */}
 
         {step == 1 ? (
@@ -273,7 +281,7 @@ const Creator = () => {
           )
         )}
       </div>
-    </div>
+    </CreatorLayout>
   );
 };
 

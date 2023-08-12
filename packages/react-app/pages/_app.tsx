@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import celoGroups from "@celo/rainbowkit-celo/lists";
-import Layout from "../components/Layout";
+import Layout from "../components/layouts/Layout";
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { publicProvider } from "wagmi/providers/public";
