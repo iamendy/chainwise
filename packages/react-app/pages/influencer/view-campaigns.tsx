@@ -5,9 +5,8 @@ import { Bolt, Twitter } from "../../components/icons";
 const ViewCampaigns = () => {
   return (
     <InfluencerLayout>
+      <h3 className=" mb-4">Latest Campaigns</h3>
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
-        <h3 className=" mb-4">Latest Campaigns</h3>
-
         <div className="lg:grid lg:grid-cols-2 gap-x-3">
           <Link
             href="/influencer/view-campaign/1"

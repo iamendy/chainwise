@@ -3,8 +3,9 @@ import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 const Account = () => {
   return (
     <InfluencerLayout>
+      <h3 className="mb-6">Connect your socials</h3>
       <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
-        <div className="mt-6 gap-6 space-y-4 md:grid md:grid-cols-2 md:space-y-0">
+        <div className="space-y-4 md:grid md:grid-cols-2 md:space-y-0">
           <div className="w-full">
             <label
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

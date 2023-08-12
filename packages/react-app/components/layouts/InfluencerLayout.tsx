@@ -27,7 +27,12 @@ const InfluencerLayout = ({ children }: { children: React.ReactNode }) => {
               Campaigns
             </Link>
 
-            <Link href="/influencer/account" className="px-4 py-2 border">
+            <Link
+              href="/influencer/account"
+              className={`px-4 py-2 border ${
+                router.asPath == "/influencer/account" && "bg-gray-300"
+              }`}
+            >
               Manage Account
             </Link>
           </div>

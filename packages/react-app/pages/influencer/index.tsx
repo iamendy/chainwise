@@ -12,14 +12,18 @@ import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 const Dashboard = () => {
   return (
     <InfluencerLayout>
-      <div className="mb-6">
+      <div className="mb-6 flex justify-between items-center">
         <h3>Welcome, 0x323</h3>
 
-        <div className="flex">
-          <Star big={true} />
-          <Star big={true} />
-          <Star big={true} />
-          <Star big={true} />
+        <div className="flex items-center gap-x-2">
+          <div className="flex">
+            <Star big={true} />
+            <Star big={true} />
+            <Star big={true} />
+            <Star big={true} />
+          </div>
+
+          <div className="text-sm">4.2/5 ratings</div>
         </div>
       </div>
       <div className="flex justify-between items-center">

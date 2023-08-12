@@ -27,14 +27,14 @@ const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
               Create campaign
             </Link>
 
-            <Link
+            {/* <Link
               href="/creator/view-campaigns"
               className={`px-4 py-2 border ${
                 router.asPath == "/creator/view-campaigns" && "bg-gray-300"
               }`}
             >
               View campaigns
-            </Link>
+            </Link> */}
           </div>
         </div>
       </aside>

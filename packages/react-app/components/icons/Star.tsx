@@ -6,7 +6,7 @@ const Star = ({ big = false }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`${big ? "w-6 h-6" : "w-3 h-3"}`}
+      className={`${big ? "w-5 h-5" : "w-3 h-3"}`}
     >
       <path
         strokeLinecap="round"
