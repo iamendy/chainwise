@@ -37,14 +37,16 @@ model Campaign {
   name String
   websiteUrl String
   twitterUrl String
-  amount String
-  status String /// 0 - pending, 1 - completed, 2 - ongoing
-  influencerId String
-  milestones Milestones[]
-  startDate DateTime @default(now())
-  endDate DateTime @default(now())
+  amount String? @default("0")
+  status Int @default(0) /// 0 - pending, 1 - completed, 2 - ongoing
+  influencerId String?
+  
+  startDate DateTime? @default(now())
+  endDate DateTime? @default(now())
   createdAt DateTime @default(now())
-  assignedTo Influencer @relation(fields: [influencerId], references: [id])
+  
+  milestones Milestones[]
+  assignedTo Influencer? @relation(fields: [influencerId], references: [id])
   @@map("campaigns")
 }
 
