@@ -13,16 +13,18 @@ datasource db {
 model User {
   id String @id @default(cuid())
   address String @unique
-  isInfluencer Boolean 
-  influencerId String
+  isInfluencer Boolean @default(false)
+  
+  influencerId String?
   influencer Influencer[]
+  campaign Campaign[]
   createdAt DateTime @default(now())
   @@map("users")
 }
 
 model Influencer {
   id String @id @default(cuid())
-  userAddress String
+  userAddress String 
   username String
   followers Int
   profileLink String
@@ -39,14 +41,16 @@ model Campaign {
   twitterUrl String
   amount String? @default("0")
   status Int @default(0) /// 0 - pending, 1 - completed, 2 - ongoing
-  influencerId String?
-  
+  userAdd String
+  influencerId String? 
+  description String 
   startDate DateTime? @default(now())
   endDate DateTime? @default(now())
   createdAt DateTime @default(now())
-  
+
   milestones Milestones[]
   assignedTo Influencer? @relation(fields: [influencerId], references: [id])
+  creator User @relation(fields: [userAdd], references: [address])
   @@map("campaigns")
 }
 
@@ -54,7 +58,11 @@ model Milestones{
   id String @id @default(cuid())
   title String
   description String
+  
+  status Int @default(0) /// 0 - pending, 1 - marked, 2 - approved
+
   campaignId String
+  
   createdAt DateTime @default(now())
   campaign Campaign @relation(fields: [campaignId], references: [id])
   @@map("milestones")

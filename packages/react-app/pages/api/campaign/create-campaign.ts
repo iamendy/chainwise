@@ -7,8 +7,16 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   if (req.method === "POST") {
-    const { name, websiteUrl, twitterUrl, startDate, endDate, amount } =
-      req.body;
+    const {
+      name,
+      websiteUrl,
+      twitterUrl,
+      startDate,
+      endDate,
+      amount,
+      userAdd,
+      description,
+    } = req.body;
     console.log(req.body);
     try {
       const campaign = await prisma.campaign.create({
@@ -18,7 +26,8 @@ export default async function handler(
           twitterUrl,
           startDate: new Date(),
           endDate: new Date(),
-          amount,
+          description,
+          userAdd,
         },
       });
       console.log(campaign);

@@ -13,8 +13,6 @@ export default async function handler(
     const user = await prisma.user.create({
       data: {
         address: req.body.address,
-        isInfluencer: false,
-        influencerId: "ssiw",
       },
     });
     res.status(200).json({ msg: user });
