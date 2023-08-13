@@ -7,6 +7,7 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { publicProvider } from "wagmi/providers/public";
 import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
+import { useEffect, useState } from "react";
 
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string;
 
@@ -18,7 +19,7 @@ const { chains, publicClient } = configureChains(
 const connectors = celoGroups({
   chains,
   projectId,
-  appName: (typeof document === "object" && document.title) || "Your App Name",
+  appName: (typeof document === "object" && document.title) || "ChainWise",
 });
 
 const appInfo = {
@@ -32,14 +33,24 @@ const wagmiConfig = createConfig({
 });
 
 function App({ Component, pageProps }: AppProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => setIsLoaded(true));
+
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains} appInfo={appInfo} coolMode={true}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    isLoaded && (
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider
+          chains={chains}
+          appInfo={appInfo}
+          modalSize="compact"
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    )
   );
 }
 

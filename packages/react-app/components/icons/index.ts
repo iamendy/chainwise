@@ -16,6 +16,7 @@ import Twitter from "./Twitter";
 import Bolt from "./Bolt";
 import Select from "./Select";
 import Check from "./Check";
+import User from "./User";
 
 export {
   Menu,
@@ -36,4 +37,5 @@ export {
   Bolt,
   Select,
   Check,
+  User,
 };

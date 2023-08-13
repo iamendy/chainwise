@@ -1,11 +1,19 @@
 import Link from "next/link";
-import { Menu, Close } from "./icons";
+import { Menu, Close, User } from "./icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
+import truncate from "../helpers/truncate";
+import { useAccount } from "wagmi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useRouter();
+
+  const { address } = useAccount();
+
+  const { openConnectModal } = useConnectModal();
+  const { openAccountModal } = useAccountModal();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,6 +48,7 @@ const Navbar = () => {
           </span>
           <span className="font-bold">ChainWise</span>
         </Link>
+
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
             <li>
@@ -69,13 +78,27 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden lg:block">
-          <button
-            type="button"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Connect Wallet
-          </button>
+          {openConnectModal && (
+            <button
+              onClick={openConnectModal}
+              type="button"
+              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              Connect Wallet
+            </button>
+          )}
+
+          {openAccountModal && (
+            <button
+              onClick={openAccountModal}
+              className="flex items-center justify-center cursor-pointer"
+            >
+              {truncate(address)}
+              <User />
+            </button>
+          )}
         </div>
+
         <div className="lg:hidden">
           <div onClick={() => toggleMenu()}>
             <Menu />
@@ -129,12 +152,16 @@ const Navbar = () => {
                     ))}
                   </nav>
                 </div>
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  Connect Wallet
-                </button>
+
+                {openConnectModal && (
+                  <button
+                    onClick={openConnectModal}
+                    type="button"
+                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  >
+                    Connect Wallet
+                  </button>
+                )}
               </div>
             </div>
           </div>

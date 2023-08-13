@@ -1,7 +1,11 @@
 import Image from "next/image";
 import hero from "../public/hero.avif";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
+import Link from "next/link";
 
 const Hero = () => {
+  const { openConnectModal } = useConnectModal();
+
   return (
     <div className="relative w-full bg-white mb-12">
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -20,12 +24,22 @@ const Hero = () => {
             business growth.
           </p>
           <div className="mt-3">
-            <button
-              type="button"
-              className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              Connect wallet
-            </button>
+            {openConnectModal ? (
+              <button
+                onClick={openConnectModal}
+                type="button"
+                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Connect Wallet
+              </button>
+            ) : (
+              <Link
+                href="/creator"
+                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Go to Dashboard
+              </Link>
+            )}
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6">
