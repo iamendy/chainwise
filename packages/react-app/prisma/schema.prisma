@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(cuid())
+  address String @unique
+  isInfluencer Boolean 
+  influencerId String
+  influencer Influencer[]
+  createdAt DateTime @default(now())
+  @@map("users")
+}
+
+model Influencer {
+  id String @id @default(cuid())
+  userAddress String
+  username String
+  followers Int
+  profileLink String
+  user  User    @relation(fields: [userAddress], references: [address])
+  createdAt DateTime @default(now())
+  campaigns Campaign[]
+  @@map("influencers")
+}
+
+model Campaign {
+  id String @id @default(cuid())
+  name String
+  websiteUrl String
+  twitterUrl String
+  amount String
+  status String /// 0 - pending, 1 - completed, 2 - ongoing
+  influencerId String
+  milestones Milestones[]
+  startDate DateTime @default(now())
+  endDate DateTime @default(now())
+  createdAt DateTime @default(now())
+  assignedTo Influencer @relation(fields: [influencerId], references: [id])
+  @@map("campaigns")
+}
+
+model Milestones{
+  id String @id @default(cuid())
+  title String
+  description String
+  campaignId String
+  createdAt DateTime @default(now())
+  campaign Campaign @relation(fields: [campaignId], references: [id])
+  @@map("milestones")
+}
