@@ -12,7 +12,7 @@ import CreatorLayout from "../../../components/layouts/CreatorLayout";
 
 const ViewCampaign = () => {
   return (
-    <CreatorLayout>
+    <>
       <h3 className="mb-4 flex items-center gap-x-2">
         {" "}
         <Bolt /> Interested Influencers
@@ -149,7 +149,7 @@ const ViewCampaign = () => {
           </div>
         </div>
       </div>
-    </CreatorLayout>
+    </>
   );
 };
 export default ViewCampaign;

@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { CampaignProvider } from "../../contexts/CampaignContext";
 
 const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  console.log(router.asPath);
+
   return (
     <section className="mx-auto max-w-7xl flex gap-x-4 px-4 pt-5 h-full">
       <aside className="hidden lg:block w-[30%] bg-gray-5 py-8 rounded-md">
@@ -39,9 +40,11 @@ const CreatorLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </aside>
 
-      <main className=" bg-gray-50 py-8 w-full rounded-md">
-        <div className="mx-auto my-4 max-w-2xl">{children}</div>
-      </main>
+      <CampaignProvider>
+        <main className=" bg-gray-50 py-8 w-full rounded-md">
+          <div className="mx-auto my-4 max-w-2xl">{children}</div>
+        </main>
+      </CampaignProvider>
     </section>
   );
 };

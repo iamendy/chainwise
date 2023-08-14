@@ -4,7 +4,7 @@ import { Bolt, Twitter } from "../../components/icons";
 
 const ViewCampaigns = () => {
   return (
-    <CreatorLayout>
+    <>
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
         <h3 className=" mb-4">Ongoing Campaigns</h3>
 
@@ -85,7 +85,7 @@ const ViewCampaigns = () => {
           </Link>
         </div>
       </div>
-    </CreatorLayout>
+    </>
   );
 };
 export default ViewCampaigns;

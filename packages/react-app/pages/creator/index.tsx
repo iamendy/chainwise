@@ -10,7 +10,7 @@ const Dashboard = () => {
   const tabs = ["Pending", "Ongoing", "Completed"];
 
   return (
-    <CreatorLayout>
+    <>
       <div className="flex justify-between items-center">
         <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
           <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
@@ -228,7 +228,7 @@ const Dashboard = () => {
           </Link>
         </div>
       </div>
-    </CreatorLayout>
+    </>
   );
 };
 

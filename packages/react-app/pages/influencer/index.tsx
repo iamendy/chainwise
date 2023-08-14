@@ -11,7 +11,7 @@ import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 
 const Dashboard = () => {
   return (
-    <InfluencerLayout>
+    <>
       <div className="mb-6 flex justify-between items-center">
         <h3>Welcome, 0x323</h3>
 
@@ -139,7 +139,7 @@ const Dashboard = () => {
           <p>No active campaigns</p>
         </div>
       </div>
-    </InfluencerLayout>
+    </>
   );
 };
 export default Dashboard;

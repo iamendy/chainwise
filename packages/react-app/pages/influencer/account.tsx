@@ -2,7 +2,7 @@ import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 
 const Account = () => {
   return (
-    <InfluencerLayout>
+    <>
       <h3 className="mb-6">Connect your socials</h3>
       <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
         <div className="space-y-4 md:grid md:grid-cols-2 md:space-y-0">
@@ -28,7 +28,7 @@ const Account = () => {
           </button>
         </div>
       </div>
-    </InfluencerLayout>
+    </>
   );
 };
 export default Account;

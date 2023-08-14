@@ -93,6 +93,7 @@ const Navbar = () => {
               onClick={openAccountModal}
               className="flex items-center justify-center cursor-pointer"
             >
+              {/* @ts-ignore */}
               {truncate(address)}
               <User />
             </button>
