@@ -13,11 +13,12 @@ export default async function handler(
       twitterUrl,
       startDate,
       endDate,
-      amount,
       userAdd,
       description,
     } = req.body;
+
     console.log(req.body);
+
     try {
       const campaign = await prisma.campaign.create({
         data: {

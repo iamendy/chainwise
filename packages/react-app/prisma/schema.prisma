@@ -17,7 +17,7 @@ model User {
   
   influencerId String?
   influencer Influencer[]
-  campaign Campaign[]
+  //campaign Campaign[]
   createdAt DateTime @default(now())
   @@map("users")
 }
@@ -50,7 +50,7 @@ model Campaign {
 
   milestones Milestones[]
   assignedTo Influencer? @relation(fields: [influencerId], references: [id])
-  creator User @relation(fields: [userAdd], references: [address])
+  //creator User @relation(fields: [userAdd], references: [address])
   @@map("campaigns")
 }
 

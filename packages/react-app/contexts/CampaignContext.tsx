@@ -11,8 +11,9 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
     twitterUrl: "",
     description: "",
     amount: "",
-    startDate: new Date(),
-    endDate: new Date(),
+    userAdd: "",
+    startDate: "",
+    endDate: "",
   });
 
   const [milestones, setMilestones] = useState([
@@ -24,7 +25,7 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
   ]);
 
   return (
-    <CampaignContext.Provider value={{ step, setStep }}>
+    <CampaignContext.Provider value={{ step, setStep, campaign, setCampaign }}>
       {children}
     </CampaignContext.Provider>
   );

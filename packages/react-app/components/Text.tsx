@@ -1,4 +1,6 @@
 import { useFormContext } from "react-hook-form";
+import { useContext } from "react";
+import CampaignContext from "../contexts/CampaignContext";
 
 interface Text {
   id: string;
@@ -7,6 +9,8 @@ interface Text {
 }
 
 const Text = ({ id, label, placeholder }: Text) => {
+  const { campaign, setCampaign } = useContext(CampaignContext);
+
   const {
     register,
     formState: { errors },
@@ -18,17 +22,23 @@ const Text = ({ id, label, placeholder }: Text) => {
           <label className="text-sm font-medium " htmlFor={id}>
             {label}
           </label>
-          <small className="text-red-500">{errors?.[label]?.message}</small>
+          <small className="text-red-500">{errors?.[id]?.message}</small>
         </div>
 
         <textarea
           id={id}
           className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           placeholder={placeholder}
-          {...register(label, {
+          value={campaign?.description}
+          {...register(id, {
+            onChange: (e) =>
+              setCampaign((prev: any) => ({
+                ...prev,
+                [e.target.id]: e.target.value,
+              })),
             required: {
               value: true,
-              message: `${label} is required`,
+              message: `${id} is required`,
             },
           })}
         ></textarea>

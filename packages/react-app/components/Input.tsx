@@ -1,4 +1,6 @@
 import { useFormContext } from "react-hook-form";
+import { useContext } from "react";
+import CampaignContext from "../contexts/CampaignContext";
 
 interface Input {
   id: string;
@@ -12,13 +14,16 @@ const Input = ({ id, label, placeholder, type = "text" }: Input) => {
     register,
     formState: { errors },
   } = useFormContext();
+
+  const { campaign, setCampaign } = useContext(CampaignContext);
+
   return (
     <div className="w-full">
       <div className="flex items-center justify-between">
         <label className="text-sm font-medium" htmlFor={id}>
           {label}
         </label>
-        <small className="text-red-500">{errors?.[label]?.message}</small>
+        <small className="text-red-500">{errors?.[id]?.message}</small>
       </div>
 
       <input
@@ -26,13 +31,19 @@ const Input = ({ id, label, placeholder, type = "text" }: Input) => {
         type={type}
         placeholder={placeholder}
         id={id}
-        {...register(label, {
+        value={campaign?.[id]}
+        {...register(id, {
+          onChange: (e) =>
+            setCampaign((prev: any) => ({
+              ...prev,
+              [e.target.id]: e.target.value,
+            })),
           required: {
             value: true,
             message: `${label} is required`,
           },
         })}
-      ></input>
+      />
     </div>
   );
 };
