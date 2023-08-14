@@ -1,14 +1,7 @@
 import { useState, useContext } from "react";
-import CreatorLayout from "../../components/layouts/CreatorLayout";
 import CampaignContext from "../../contexts/CampaignContext";
-
-import {
-  Milestone,
-  ChevronRight,
-  Cart,
-  Add,
-  Trash,
-} from "../../components/icons";
+import NewCampaign from "../../components/NewCampaign";
+import { Milestone, ChevronRight, Add, Trash } from "../../components/icons";
 
 const CreateCampaign = () => {
   //@ts-ignore
@@ -58,7 +51,7 @@ const CreateCampaign = () => {
                 <ChevronRight />
                 <a
                   href="#"
-                  className="ml-1 text-sm font-medium text-gray-900 hover:underline md:ml-2"
+                  className="ml-1 text-sm font-medium text-gray-300 hover:underline md:ml-2"
                 >
                   {step}
                 </a>
@@ -71,122 +64,7 @@ const CreateCampaign = () => {
       {/* Form */}
 
       {step == 1 ? (
-        <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
-          <div className="mb-4 flex items-center rounded-lg py-2">
-            <div className="mr-2 rounded-full bg-gray-100  p-2 text-black">
-              <Cart />
-            </div>
-            <div className="flex flex-1">
-              <p className="text-sm font-medium">
-                Enter campaign details {step}
-              </p>
-            </div>
-          </div>
-
-          <div className="col-span-2 grid">
-            <div className="w-full">
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="name"
-              >
-                Name
-              </label>
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="text"
-                placeholder="Enter campaign name"
-                id="name"
-              ></input>
-            </div>
-          </div>
-
-          <div className="mt-6 gap-6 space-y-4 md:grid md:grid-cols-2 md:space-y-0">
-            <div className="w-full">
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="website"
-              >
-                Website
-              </label>
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="text"
-                placeholder="https://"
-                id="website"
-              ></input>
-            </div>
-
-            <div className="w-full">
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="twitter"
-              >
-                Twitter
-              </label>
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="text"
-                placeholder="https://twitter.com/xyz"
-                id="lastName"
-              ></input>
-            </div>
-
-            <div className="w-full">
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="name"
-              >
-                Start Date
-              </label>
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="text"
-                placeholder="01/12/2023"
-                id="name"
-              ></input>
-            </div>
-
-            <div className="w-full">
-              <label
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                htmlFor="lastName"
-              >
-                End Date
-              </label>
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="text"
-                placeholder="02/12/2023"
-                id="lastName"
-              ></input>
-            </div>
-
-            <div className="col-span-2 grid">
-              <div className="w-full">
-                <label
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="email"
-                >
-                  Description
-                </label>
-                <textarea
-                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="Enter short description"
-                ></textarea>
-              </div>
-            </div>
-
-            <div className="col-span-2 grid justify-end">
-              <button
-                onClick={() => setStep(2)}
-                type="button"
-                className="w-[200px] rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-              >
-                Next Step
-              </button>
-            </div>
-          </div>
-        </div>
+        <NewCampaign />
       ) : step == 2 ? (
         <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
           <div className="flex items-center justify-between mb-2">

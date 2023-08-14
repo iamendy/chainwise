@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
 
-const CampaignContext = createContext({ step: 1 });
+const CampaignContext = createContext(null);
 
 export function CampaignProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState<number>(1);
@@ -24,7 +24,7 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
   ]);
 
   return (
-    <CampaignContext.Provider value={{ step: 1 }}>
+    <CampaignContext.Provider value={{ step, setStep }}>
       {children}
     </CampaignContext.Provider>
   );
