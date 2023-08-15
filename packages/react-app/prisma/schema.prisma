@@ -57,7 +57,7 @@ model Campaign {
 model Milestones{
   id String @id @default(cuid())
   title String
-  description String
+  description String?
   
   status Int @default(0) /// 0 - pending, 1 - marked, 2 - approved
 

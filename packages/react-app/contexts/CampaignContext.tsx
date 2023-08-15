@@ -6,6 +6,7 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState<number>(1);
 
   const [campaign, setCampaign] = useState({
+    id: "",
     name: "",
     websiteUrl: "",
     twitterUrl: "",
@@ -16,16 +17,19 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
     endDate: "",
   });
 
-  const [milestones, setMilestones] = useState([
-    {
-      title: "",
-      description: "",
-      campaignId: "",
-    },
-  ]);
+  const [milestoneCount, setMilestoneCount] = useState(0);
 
   return (
-    <CampaignContext.Provider value={{ step, setStep, campaign, setCampaign }}>
+    <CampaignContext.Provider
+      value={{
+        step,
+        setStep,
+        campaign,
+        setCampaign,
+        milestoneCount,
+        setMilestoneCount,
+      }}
+    >
       {children}
     </CampaignContext.Provider>
   );

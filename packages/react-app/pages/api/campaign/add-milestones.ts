@@ -7,21 +7,19 @@ type Data = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<any>
 ) {
-  const { title, description, campaignId } = req.body;
+  const reqMilestones = req.body;
 
+  console.log(reqMilestones);
   if (req.method === "POST") {
+    //res.status(200).json({ msg: req.body });
     try {
-      const milestone = await prisma.milestones.create({
-        data: {
-          title,
-          description,
-          campaignId,
-        },
+      const milestones = await prisma.milestones.createMany({
+        data: reqMilestones,
       });
 
-      res.status(200).json({ msg: milestone });
+      res.status(200).json({ milestones });
     } catch (e) {
       res.status(500).json({ msg: e });
     }

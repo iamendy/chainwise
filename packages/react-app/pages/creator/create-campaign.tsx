@@ -6,7 +6,7 @@ import AddMilestones from "../../components/AddMilestones";
 
 const CreateCampaign = () => {
   //@ts-ignore
-  const { step, setStep } = useContext(CampaignContext);
+  const { step, setStep, milestoneCount } = useContext(CampaignContext);
   const steps = ["Milestone", "Payment"];
 
   return (
@@ -74,13 +74,6 @@ const CreateCampaign = () => {
 
               <div className="col-span-2 flex justify-end">
                 <button
-                  onClick={() => setStep(step - 1)}
-                  type="button"
-                  className="w-fit lg:w-[200px] rounded-md bg-transparent mr-3 border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-black/80 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  Previous
-                </button>
-                <button
                   onClick={() => setStep(3)}
                   type="button"
                   className="w-fit lg:w-[200px] rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
@@ -89,6 +82,7 @@ const CreateCampaign = () => {
                 </button>
               </div>
             </div>
+            <div>{milestoneCount}</div>
           </div>
         )
       )}

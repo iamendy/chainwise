@@ -15,7 +15,6 @@ const NewCampaign = () => {
   const { address } = useAccount();
 
   const onSubmit = methods.handleSubmit(async () => {
-    console.log("submitted");
     //post to db
     await axios
       .post("/api/campaign/create-campaign", {
@@ -26,7 +25,6 @@ const NewCampaign = () => {
       })
       .then((d) => {
         //set campaign context
-        console.log(d?.data?.campaign);
         setCampaign({ ...d?.data?.campaign, amount: "0" });
         //update step
         setStep(2);
@@ -35,8 +33,6 @@ const NewCampaign = () => {
   });
 
   const onUpdate = methods.handleSubmit(async () => {
-    console.log("updated");
-
     //post to db
     await axios
       .patch(`/api/campaign/update-campaign`, {
@@ -47,13 +43,13 @@ const NewCampaign = () => {
       })
       .then((d) => {
         //set campaign context
-        console.log(d?.data?.campaign);
         setCampaign({ ...d?.data?.campaign, amount: "0" });
       })
-      .then(() =>
+      .then(() => {
         //update step
-        setStep(2)
-      )
+
+        setStep(2);
+      })
       .catch((e) => console.log(e));
   });
 
