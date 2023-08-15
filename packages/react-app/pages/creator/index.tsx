@@ -9,27 +9,27 @@ import CompletedCampaign from "../../components/creator/CompletedCampaign";
 import PendingTab from "../../components/creator/PendingTab";
 import OngoingTab from "../../components/creator/OngoingTab";
 import CompletedTab from "../../components/creator/CompletedTab";
+import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Pending");
-  const [campaigns, setCampaigns] = useState([]);
 
   const tabs = ["Pending", "Ongoing", "Completed"];
 
   const { address } = useAccount();
 
+  //get all user campaign
   const getCampaigns = async () => {
-    axios
-      .get(`/api/campaign/get-user-campaigns?address=${address}`)
-      .then((d) => {
-        setCampaigns(d.data.campaigns);
-      })
-      .catch((e) => console.log(e));
+    const { data } = await axios.get(
+      `/api/campaign/get-user-campaigns?address=${address}`
+    );
+    return data.campaigns;
   };
 
-  useEffect(() => {
-    getCampaigns();
-  }, []);
+  const { data: campaigns } = useQuery({
+    queryKey: ["campaigns"],
+    queryFn: getCampaigns,
+  });
 
   //filter campaigns by status
   const pending = campaigns?.filter((d) => d.status == 0);
@@ -44,16 +44,16 @@ const Dashboard = () => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <OngoingCampaign count={ongoing.length} />
+        <OngoingCampaign count={ongoing?.length} />
 
-        <CompletedCampaign count={completed.length} />
+        <CompletedCampaign count={completed?.length} />
 
         <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
           <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
             <Card />
           </div>
           <div>
-            <b>{total} CELO</b>
+            <b>{total || 0} CELO</b>
             <p className="text-[14px]"> Marketing goals </p>
           </div>
         </div>

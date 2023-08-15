@@ -4,7 +4,7 @@ import { Twitter } from "../icons";
 const CompletedTab = ({ campaigns }) => {
   return (
     <>
-      {campaigns.length > 0 ? (
+      {campaigns?.length > 0 ? (
         <div className="lg:grid lg:grid-cols-2 gap-x-3 min-h-[150px]">
           <Link
             href="/creator/view-campaign/5"

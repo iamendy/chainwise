@@ -11,8 +11,14 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { publicProvider } from "wagmi/providers/public";
 import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 import { useEffect, useState } from "react";
-import { CampaignProvider } from "../contexts/CampaignContext";
 import { useRouter } from "next/router";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string;
 
@@ -37,6 +43,8 @@ const wagmiConfig = createConfig({
   publicClient: publicClient,
 });
 
+const queryClient = new QueryClient();
+
 function App({ Component, pageProps }: AppProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
@@ -50,19 +58,21 @@ function App({ Component, pageProps }: AppProps) {
           appInfo={appInfo}
           modalSize="compact"
         >
-          <Layout>
-            {router?.pathname?.includes("creator") ? (
-              <CreatorLayout>
+          <QueryClientProvider client={queryClient}>
+            <Layout>
+              {router?.pathname?.includes("creator") ? (
+                <CreatorLayout>
+                  <Component {...pageProps} />
+                </CreatorLayout>
+              ) : router?.pathname?.includes("influencer") ? (
+                <InfluencerLayout>
+                  <Component {...pageProps} />
+                </InfluencerLayout>
+              ) : (
                 <Component {...pageProps} />
-              </CreatorLayout>
-            ) : router?.pathname?.includes("influencer") ? (
-              <InfluencerLayout>
-                <Component {...pageProps} />
-              </InfluencerLayout>
-            ) : (
-              <Component {...pageProps} />
-            )}
-          </Layout>
+              )}
+            </Layout>
+          </QueryClientProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     )

@@ -17,6 +17,7 @@ import Bolt from "./Bolt";
 import Select from "./Select";
 import Check from "./Check";
 import User from "./User";
+import RoundCheck from "./RoundCheck";
 
 export {
   Menu,
@@ -38,4 +39,5 @@ export {
   Select,
   Check,
   User,
+  RoundCheck,
 };

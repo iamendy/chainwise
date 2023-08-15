@@ -1,16 +1,31 @@
-import {
-  Bolt,
-  Card,
-  Check,
-  Completed,
-  Select,
-  Star,
-  Tasks,
-  Twitter,
-} from "../../../components/icons";
-import CreatorLayout from "../../../components/layouts/CreatorLayout";
+import { Bolt, Select, Star, Twitter } from "../../../components/icons";
+
+import { useRouter } from "next/router";
+import axios from "axios";
+import Link from "../../../components/icons/Link";
+import getDate from "../../../helpers/formatDate";
+import Milestones from "../../../components/creator/Milestones";
+import { useQuery } from "@tanstack/react-query";
 
 const ViewCampaign = () => {
+  const router = useRouter();
+
+  const getCampaign = async () => {
+    const { data } = await axios.get(
+      `/api/campaign/get-campaign?id=${router?.query?.id}`
+    );
+
+    console.log(data);
+    return data?.campaign;
+  };
+
+  const { data: campaign } = useQuery({
+    queryKey: ["campaigns", router],
+    queryFn: getCampaign,
+  });
+
+  const completed = campaign?.milestones?.filter((d) => d.status == 2);
+
   return (
     <>
       <h3 className="mb-4 flex items-center gap-x-2">
@@ -73,7 +88,7 @@ const ViewCampaign = () => {
 
       <div className="rounded-xl bg-white p-4 shadow">
         <div className="mb-4">
-          <h3 className="text-lg font-bold">ByBit Network</h3>
+          <h3 className="text-lg font-bold">{campaign?.name}</h3>
 
           <p className="text-gray-400">
             Influencer .{" "}
@@ -83,71 +98,38 @@ const ViewCampaign = () => {
           </p>
         </div>
 
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-          exercitationem corporis incidunt blanditiis dignissimos voluptatum.
-        </p>
+        <p className="mb-4">{campaign?.description}</p>
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-x-2">
             <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              1/3 Milestones
+              {completed?.length}/{campaign?.milestones.length} Milestones
             </span>
-            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              website
-            </span>
-            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              @twitter
-            </span>
+            <a
+              href={campaign?.websiteUrl}
+              target="_blank"
+              className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
+            >
+              <span>website</span> <Link />
+            </a>
+            <a
+              href={campaign?.twitterUrl}
+              target="_blank"
+              className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
+            >
+              <span>twitter</span> <Link />
+            </a>
           </div>
 
-          <p className="text-gray-800 text-[14px]">12 Aug - 24th Dec 2023</p>
+          <p className="text-gray-800 text-[14px]">
+            {getDate(campaign?.startDate)} - {getDate(campaign?.endDate)}
+          </p>
         </div>
 
-        <div className="border rounded-lg p-4 flex flex-col gap-y-4">
-          <div className="flex items-center justify-between px-2 text-gray-400">
-            <div>
-              <p className="font-semibold flex items-center gap-x-2">
-                {" "}
-                Milestone 1 <Check />{" "}
-              </p>
-              <p className="">Lorem ipsum dolor sit amet.</p>
-            </div>
-            3 CELO
-          </div>
-
-          <div className="flex items-center justify-between px-2">
-            <div>
-              <p className="font-semibold"> Milestone 2</p>
-              <p className="text-gray-900">Lorem ipsum dolor sit amet.</p>
-
-              <div className="bg-gray-50 border rounded-md px-2 py-1">
-                Confirm delivery?
-                <br />
-                <button className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm">
-                  Yes
-                </button>{" "}
-                <button className="border border-black leading-none px-2 py-1 rounded-md text-sm">
-                  No
-                </button>
-              </div>
-            </div>
-            3 CELO
-          </div>
-
-          <div className="flex items-center justify-between px-2">
-            <div>
-              <p className="font-semibold"> Milestone 3</p>
-              <p className="text-gray-900">Lorem ipsum dolor sit amet.</p>
-            </div>
-            3 CELO
-          </div>
-
-          <div className="bg-gray-100 p-2 flex justify-between items-center rounded-lg">
-            <span className="font-bold">Total </span>
-            <span>12 CELO</span>
-          </div>
-        </div>
+        <Milestones
+          milestones={campaign?.milestones}
+          amount={campaign?.amount}
+        />
       </div>
     </>
   );
