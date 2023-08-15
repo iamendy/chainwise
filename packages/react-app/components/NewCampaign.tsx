@@ -112,9 +112,6 @@ const NewCampaign = () => {
             )}
           </div>
         </div>
-        <div className=" whitespace-break-spaces">
-          {JSON.stringify(campaign)}
-        </div>
       </form>
     </FormProvider>
   );

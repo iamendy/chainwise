@@ -49,8 +49,6 @@ const AddMilestones = () => {
 
   //submit to database
   const onSubmit = async () => {
-    console.log("submitted");
-
     //remove id field cos of db error
     const reqMilestones = milestones.map((d) => ({
       title: d.title,
@@ -63,6 +61,16 @@ const AddMilestones = () => {
 
       .then((d) => {
         setMilestoneCount(milestones.length);
+
+        //reset milestone
+        setMilestones({
+          id: 1,
+          title: "",
+          description: "",
+          campaignId: "",
+        });
+
+        //activate payment modal
         setStep(3);
       });
   };
@@ -174,9 +182,6 @@ const AddMilestones = () => {
             </div>
           ))}
         </div>
-
-        <div> {JSON.stringify(milestones)} </div>
-        <div> {JSON.stringify(campaign)} </div>
 
         <div className="col-span-2 flex justify-end mt-8">
           <button

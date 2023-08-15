@@ -3,6 +3,7 @@ import CampaignContext from "../../contexts/CampaignContext";
 import NewCampaign from "../../components/NewCampaign";
 import { Milestone, ChevronRight, Add, Trash } from "../../components/icons";
 import AddMilestones from "../../components/AddMilestones";
+import MakePayment from "../../components/MakePayment";
 
 const CreateCampaign = () => {
   //@ts-ignore
@@ -38,53 +39,13 @@ const CreateCampaign = () => {
         </ol>
       </nav>
 
-      {/* Form */}
-
+      {/* Forms */}
       {step == 1 ? (
         <NewCampaign />
       ) : step == 2 ? (
         <AddMilestones />
       ) : (
-        step == 3 && (
-          <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
-            <div className="mb-4 flex items-center rounded-lg py-2">
-              <div className="mr-2 rounded-full bg-gray-100  p-2 text-black">
-                <Milestone />
-              </div>
-              <div className="flex flex-1">
-                <p className="text-sm font-medium">Make Payment</p>
-              </div>
-            </div>
-
-            <div className="mt-6 gap-6 space-y-8">
-              <div className="w-full">
-                <label
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="firstName"
-                >
-                  Amount
-                </label>
-                <input
-                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  type="text"
-                  placeholder="$CELO"
-                  id="firstName"
-                ></input>
-              </div>
-
-              <div className="col-span-2 flex justify-end">
-                <button
-                  onClick={() => setStep(3)}
-                  type="button"
-                  className="w-fit lg:w-[200px] rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  Make Payment
-                </button>
-              </div>
-            </div>
-            <div>{milestoneCount}</div>
-          </div>
-        )
+        step == 3 && <MakePayment />
       )}
     </div>
   );
