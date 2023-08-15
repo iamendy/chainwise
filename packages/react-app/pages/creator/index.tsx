@@ -38,8 +38,11 @@ const Dashboard = () => {
 
   //retrieve amounts
   const amounts = campaigns?.filter((d) => d.status >= 0).map((d) => d.amount);
+
   //sum amounts
-  const total = amounts?.reduce((t, c) => parseFloat(t + c), 0);
+  const total = amounts?.reduce((acc, currentValue) => {
+    return acc + parseFloat(currentValue);
+  }, 0);
 
   return (
     <>

@@ -1,8 +1,8 @@
-import { Bolt, Select, Star, Twitter } from "../../../components/icons";
-
+import { Back, Bolt, Select, Star, Twitter } from "../../../components/icons";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Link from "../../../components/icons/Link";
+import LinkExt from "../../../components/icons/LinkExt";
 import getDate from "../../../helpers/formatDate";
 import Milestones from "../../../components/creator/Milestones";
 import { useQuery } from "@tanstack/react-query";
@@ -14,13 +14,11 @@ const ViewCampaign = () => {
     const { data } = await axios.get(
       `/api/campaign/get-campaign?id=${router?.query?.id}`
     );
-
-    console.log(data);
     return data?.campaign;
   };
 
   const { data: campaign } = useQuery({
-    queryKey: ["campaigns", router],
+    queryKey: ["campaign", router],
     queryFn: getCampaign,
   });
 
@@ -28,6 +26,11 @@ const ViewCampaign = () => {
 
   return (
     <>
+      <Link href="/creator" className="flex mb-4 hover:underline w-fit">
+        <Back />
+        back
+      </Link>
+
       <h3 className="mb-4 flex items-center gap-x-2">
         {" "}
         <Bolt /> Interested Influencers
@@ -110,14 +113,14 @@ const ViewCampaign = () => {
               target="_blank"
               className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
             >
-              <span>website</span> <Link />
+              <span>website</span> <LinkExt />
             </a>
             <a
               href={campaign?.twitterUrl}
               target="_blank"
               className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
             >
-              <span>twitter</span> <Link />
+              <span>twitter</span> <LinkExt />
             </a>
           </div>
 

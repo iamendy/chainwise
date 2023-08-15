@@ -24,7 +24,7 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
     onSuccess: () => {
       // Invalidate and refetch
       setToggle(false);
-      queryClient.invalidateQueries({ queryKey: ["campaigns"] });
+      queryClient.invalidateQueries({ queryKey: ["campaign"] });
     },
   });
 
@@ -68,7 +68,9 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
         </div>
       </div>
       <div className="flex items-center gap-x-2">
-        <div>{amountPerMilestone} CELO</div>
+        <div>
+          {Math.round((amountPerMilestone + Number.EPSILON) * 100) / 100} CELO
+        </div>
         <div className="bg-gray-200 w-8 h-8 cursor-pointer flex hover:bg-gray-300 active:bg-gray-200 items-center justify-center rounded-full overflow-hidden">
           <RoundCheck />
         </div>

@@ -18,6 +18,7 @@ import Select from "./Select";
 import Check from "./Check";
 import User from "./User";
 import RoundCheck from "./RoundCheck";
+import Back from "./Back";
 
 export {
   Menu,
@@ -40,4 +41,5 @@ export {
   Check,
   User,
   RoundCheck,
+  Back,
 };
