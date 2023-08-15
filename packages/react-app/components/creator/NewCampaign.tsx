@@ -1,8 +1,8 @@
-import { Cart } from "./icons";
+import { Cart } from "../icons";
 import { useContext } from "react";
-import CampaignContext from "../contexts/CampaignContext";
-import Input from "./Input";
-import Text from "./Text";
+import CampaignContext from "../../contexts/CampaignContext";
+import Input from "../Input";
+import Text from "../Text";
 import { useForm, FormProvider } from "react-hook-form";
 import { useAccount } from "wagmi";
 import axios from "axios";

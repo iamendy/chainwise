@@ -1,13 +1,13 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import CampaignContext from "../../contexts/CampaignContext";
-import NewCampaign from "../../components/NewCampaign";
-import { Milestone, ChevronRight, Add, Trash } from "../../components/icons";
-import AddMilestones from "../../components/AddMilestones";
-import MakePayment from "../../components/MakePayment";
+import NewCampaign from "../../components/creator/NewCampaign";
+import { ChevronRight } from "../../components/icons";
+import AddMilestones from "../../components/creator/AddMilestones";
+import MakePayment from "../../components/creator/MakePayment";
 
 const CreateCampaign = () => {
   //@ts-ignore
-  const { step, setStep, milestoneCount } = useContext(CampaignContext);
+  const { step } = useContext(CampaignContext);
   const steps = ["Milestone", "Payment"];
 
   return (

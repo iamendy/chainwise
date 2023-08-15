@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
-import CampaignContext from "../contexts/CampaignContext";
-import { Milestone } from "./icons";
+import CampaignContext from "../../contexts/CampaignContext";
+import { Milestone } from "../icons";
 import {
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import connect from "../constants/index";
+import connect from "../../constants/index";
 import { ethers } from "ethers";
 import axios from "axios";
-import { useDebounce } from "../hooks/useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 

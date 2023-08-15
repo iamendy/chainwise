@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { Add, Milestone, Trash } from "./icons";
-import CampaignContext from "../contexts/CampaignContext";
+import { Add, Milestone, Trash } from "../icons";
+import CampaignContext from "../../contexts/CampaignContext";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 

@@ -18,7 +18,7 @@ export default async function handler(
       },
       data: {
         amount,
-        status: 1,
+        status: 0,
       },
     });
 
