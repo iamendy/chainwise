@@ -5,20 +5,14 @@ import celoGroups from "@celo/rainbowkit-celo/lists";
 import Layout from "../components/layouts/Layout";
 import CreatorLayout from "../components/layouts/CreatorLayout";
 import InfluencerLayout from "../components/layouts/InfluencerLayout";
-
+import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import { publicProvider } from "wagmi/providers/public";
 import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID as string;
 
@@ -43,9 +37,10 @@ const wagmiConfig = createConfig({
   publicClient: publicClient,
 });
 
+//setup react query
 const queryClient = new QueryClient();
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
   useEffect(() => setIsLoaded(true));
@@ -58,21 +53,23 @@ function App({ Component, pageProps }: AppProps) {
           appInfo={appInfo}
           modalSize="compact"
         >
-          <QueryClientProvider client={queryClient}>
-            <Layout>
-              {router?.pathname?.includes("creator") ? (
-                <CreatorLayout>
+          <SessionProvider session={session}>
+            <QueryClientProvider client={queryClient}>
+              <Layout>
+                {router?.pathname?.includes("creator") ? (
+                  <CreatorLayout>
+                    <Component {...pageProps} />
+                  </CreatorLayout>
+                ) : router?.pathname?.includes("influencer") ? (
+                  <InfluencerLayout>
+                    <Component {...pageProps} />
+                  </InfluencerLayout>
+                ) : (
                   <Component {...pageProps} />
-                </CreatorLayout>
-              ) : router?.pathname?.includes("influencer") ? (
-                <InfluencerLayout>
-                  <Component {...pageProps} />
-                </InfluencerLayout>
-              ) : (
-                <Component {...pageProps} />
-              )}
-            </Layout>
-          </QueryClientProvider>
+                )}
+              </Layout>
+            </QueryClientProvider>
+          </SessionProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     )
