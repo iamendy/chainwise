@@ -2,8 +2,12 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const Account = () => {
   const { data: session, status } = useSession();
-
-  console.log(session);
+  const logOut = async () => {
+    const data = await signOut({
+      callbackUrl: `/influencer`,
+      redirect: false,
+    });
+  };
 
   return (
     <>
@@ -16,11 +20,7 @@ const Account = () => {
             </div>
 
             <button
-              onClick={() =>
-                signOut({
-                  callbackUrl: `/influencer`,
-                })
-              }
+              onClick={() => logOut()}
               className="bg-black text-white leading-none px-2 py-2 rounded-md"
             >
               Disconnect

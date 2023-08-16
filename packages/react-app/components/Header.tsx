@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { pathname } = useRouter();
 
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
@@ -49,34 +49,37 @@ const Navbar = () => {
           <span className="font-bold">ChainWise</span>
         </Link>
 
-        <div className="hidden lg:block">
-          <ul className="inline-flex space-x-8">
-            <li>
-              <Link
-                href="/creator"
-                className={`text-sm font-semibold text-gray-800 hover:text-gray-900 pb-2 inline-block
+        {isConnected && (
+          <div className="hidden lg:block">
+            <ul className="inline-flex space-x-8">
+              <li>
+                <Link
+                  href="/creator"
+                  className={`text-sm font-semibold text-gray-800  hover:text-gray-500 active:text-gray-900 pb-2 inline-block
                   ${
                     pathname?.includes("creator") && "border-b border-b-black"
                   }`}
-              >
-                For Creator
-              </Link>
-            </li>
+                >
+                  For Creator
+                </Link>
+              </li>
 
-            <li>
-              <Link
-                href="/influencer"
-                className={`text-sm font-semibold text-gray-800 hover:text-gray-900 pb-2 inline-block
+              <li>
+                <Link
+                  href="/influencer"
+                  className={`text-sm font-semibold text-gray-800 hover:text-gray-500 active:text-gray-900 pb-2 inline-block
                   ${
                     pathname?.includes("influencer") &&
                     "border-b border-b-black"
                   }`}
-              >
-                For Influencer
-              </Link>
-            </li>
-          </ul>
-        </div>
+                >
+                  For Influencer
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
+
         <div className="hidden lg:block">
           {openConnectModal && (
             <button

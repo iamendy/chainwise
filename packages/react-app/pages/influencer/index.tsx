@@ -7,7 +7,6 @@ import {
   Tasks,
   Twitter,
 } from "../../components/icons";
-import InfluencerLayout from "../../components/layouts/InfluencerLayout";
 
 const Dashboard = () => {
   return (
