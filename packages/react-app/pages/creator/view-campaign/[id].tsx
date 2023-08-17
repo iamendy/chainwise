@@ -26,10 +26,13 @@ const ViewCampaign = () => {
 
   return (
     <>
-      <Link href="/creator" className="flex mb-4 hover:underline w-fit">
+      <div
+        onClick={() => router?.back()}
+        className="flex mb-4 hover:underline w-fit"
+      >
         <Back />
         back
-      </Link>
+      </div>
 
       <h3 className="mb-4 flex items-center gap-x-2">
         {" "}

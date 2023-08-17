@@ -1,153 +1,138 @@
-import {
-  Bolt,
-  Card,
-  Check,
-  Completed,
-  Select,
-  Star,
-  Tasks,
-  Twitter,
-} from "../../../components/icons";
-import CreatorLayout from "../../../components/layouts/CreatorLayout";
+import { Back, Select } from "../../../components/icons";
+import { useRouter } from "next/router";
+import axios from "axios";
+import LinkExt from "../../../components/icons/LinkExt";
+import getDate from "../../../helpers/formatDate";
+import Milestones from "../../../components/influencer/Milestones";
+import { useQuery } from "@tanstack/react-query";
+import truncate from "../../../helpers/truncate";
+import { useState } from "react";
+import { useAccount } from "wagmi";
+import { useSession } from "next-auth/react";
 
 const ViewCampaign = () => {
+  const router = useRouter();
+  const [toggleApply, setToggleApply] = useState(false);
+  const { address } = useAccount();
+  const { data: session } = useSession();
+
+  //console.log(session?.accessToken);
+  const getCampaign = async () => {
+    const { data } = await axios.get(
+      `/api/campaign/get-campaign?id=${router?.query?.id}`
+    );
+    return data?.campaign;
+  };
+
+  const { data: campaign } = useQuery({
+    queryKey: ["campaign", router],
+    queryFn: getCampaign,
+  });
+
+  //get completed milestones count
+  const completed = campaign?.milestones?.filter((d) => d.status == 2);
+
+  const applyForCampaign = async () => {
+    const { data } = await axios.post("/api/campaign/apply-for-campaign", {
+      address,
+    });
+
+    console.log(data);
+  };
+
   return (
     <>
-      <h3 className="mb-4 flex items-center gap-x-2">
-        {" "}
-        <Bolt /> Interested Influencers
-      </h3>
-      <div className="grid grid-cols-3 gap-x-4 mb-4">
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div>
-            <b className="hover:underline cursor-pointer">@frankdenero</b>
-
-            <p className="text-[14px]">Web3 gaming data analyst</p>
-
-            <div className=" w-fit  flex items-center gap-x-1 leading-none text-[12px] rounded-sm mt-2">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div className="bg-gray-20 w-fit flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-                <Twitter />
-                <span>2.1k</span>
-              </div>
-
-              <div className="bg-slate-200 hover:bg-slate-100 cursor-pointer w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg">
-                <Select />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div>
-            <b className="hover:underline cursor-pointer">@frankdenero</b>
-
-            <p className="text-[14px]">Web3 gaming data analyst</p>
-
-            <div className=" w-fit  flex items-center gap-x-1 leading-none text-[12px] rounded-sm mt-2">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div className="bg-gray-20 w-fit flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-                <Twitter />
-                <span>2.1k</span>
-              </div>
-
-              <div className="bg-slate-200 hover:bg-slate-100 cursor-pointer w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg">
-                <Select />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div
+        onClick={() => router?.back()}
+        className="flex mb-4 hover:underline w-fit cursor-pointer"
+      >
+        <Back />
+        back
       </div>
 
       <div className="rounded-xl bg-white p-4 shadow">
-        <div className="mb-4">
-          <h3 className="text-lg font-bold">ByBit Network</h3>
+        <div className="flex items-center justify-between mb-6 relative">
+          <div>
+            <h3 className="text-lg font-bold">{campaign?.name}</h3>
 
-          <p className="text-gray-400">
-            Influencer .{" "}
-            <span className="text-black hover:underline cursor-pointer">
-              @frankdegods{" "}
-            </span>
-          </p>
-        </div>
-
-        <p className="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-          exercitationem corporis incidunt blanditiis dignissimos voluptatum.
-        </p>
-
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-x-2">
-            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              1/3 Milestones
-            </span>
-            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              website
-            </span>
-            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
-              @twitter
-            </span>
-          </div>
-
-          <p className="text-gray-800 text-[14px]">12 Aug - 24th Dec 2023</p>
-        </div>
-
-        <div className="border rounded-lg p-4 flex flex-col gap-y-4">
-          <div className="flex items-center justify-between px-2 text-gray-400">
-            <div>
-              <p className="font-semibold flex items-center gap-x-2">
-                {" "}
-                Milestone 1 <Check />{" "}
+            {campaign?.status == 0 ? (
+              <p className="text-gray-400">
+                Creator .{" "}
+                <span className="text-black hover:underline cursor-pointer">
+                  {truncate(campaign?.userAdd)}
+                </span>
               </p>
-              <p className="">Lorem ipsum dolor sit amet.</p>
-            </div>
-            3 CELO
+            ) : (
+              <p className="text-gray-400">
+                Influencer .{" "}
+                <span className="text-black hover:underline cursor-pointer">
+                  @frankdegods{" "}
+                </span>
+              </p>
+            )}
           </div>
 
-          <div className="flex items-center justify-between px-2">
-            <div>
-              <p className="font-semibold"> Milestone 2</p>
-              <p className="text-gray-900">Lorem ipsum dolor sit amet.</p>
+          <button
+            onClick={() => setToggleApply(!toggleApply)}
+            className="flex py-1 px-2 hover:bg-black/80 active:bg-black rounded-sm justify-center items-center bg-black text-white "
+          >
+            <Select />
+            <span>Apply </span>
+          </button>
 
-              <div className="bg-gray-50 border rounded-md px-2 py-1">
-                Mark this as done?
-                <br />
-                <button className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm">
+          {toggleApply && (
+            <div className="absolute flex flex-col bg-gray-50 top-[100%] right-0 w-[200px] p-2 shadow">
+              <span>Apply for this promotion? </span>
+              <div className="flex gap-x-2 mt-1 justify-end">
+                <button
+                  onClick={() => applyForCampaign()}
+                  className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm"
+                >
                   Yes
                 </button>{" "}
-                <button className="border border-black leading-none px-2 py-1 rounded-md text-sm">
+                <button
+                  onClick={() => setToggleApply(false)}
+                  className="border border-black leading-none px-2 py-1 rounded-md text-sm"
+                >
                   No
                 </button>
               </div>
             </div>
-            3 CELO
-          </div>
-
-          <div className="flex items-center justify-between px-2">
-            <div>
-              <p className="font-semibold"> Milestone 3</p>
-              <p className="text-gray-900">Lorem ipsum dolor sit amet.</p>
-            </div>
-            3 CELO
-          </div>
-
-          <div className="bg-gray-100 p-2 flex justify-between items-center rounded-lg">
-            <span className="font-bold">Total </span>
-            <span>12 CELO</span>
-          </div>
+          )}
         </div>
+
+        <p className="mb-4">{campaign?.description}</p>
+
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-x-2">
+            <span className="bg-gray-300 leading-none py-2 px-4 rounded-xl text-[14px]">
+              {completed?.length}/{campaign?.milestones.length} Milestones
+            </span>
+            <a
+              href={campaign?.websiteUrl}
+              target="_blank"
+              className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
+            >
+              <span>website</span> <LinkExt />
+            </a>
+            <a
+              href={campaign?.twitterUrl}
+              target="_blank"
+              className="bg-gray-300 flex gap-x-1 items-center leading-none py-2 px-4 rounded-xl text-[14px] hover:bg-gray-200"
+            >
+              <span>twitter</span> <LinkExt />
+            </a>
+          </div>
+
+          <p className="text-gray-800 text-[14px]">
+            {getDate(campaign?.startDate)} - {getDate(campaign?.endDate)}
+          </p>
+        </div>
+
+        <Milestones
+          milestones={campaign?.milestones}
+          amount={campaign?.amount}
+        />
       </div>
     </>
   );

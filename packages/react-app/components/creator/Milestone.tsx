@@ -35,7 +35,6 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
 
   return (
     <div
-      onClick={() => setToggle(true)}
       className={`${
         milestone.status == 2
           ? "text-gray-500 line-through pointer-events-none"
@@ -71,7 +70,10 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
         <div>
           {Math.round((amountPerMilestone + Number.EPSILON) * 100) / 100} CELO
         </div>
-        <div className="bg-gray-200 w-8 h-8 cursor-pointer flex hover:bg-gray-300 active:bg-gray-200 items-center justify-center rounded-full overflow-hidden">
+        <div
+          onClick={() => setToggle(true)}
+          className="bg-gray-200 w-8 h-8 cursor-pointer flex hover:bg-gray-300 active:bg-gray-200 items-center justify-center rounded-full overflow-hidden"
+        >
           <RoundCheck />
         </div>
       </div>

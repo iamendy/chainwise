@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import TwitterProvider from "next-auth/providers/twitter";
-import axios from "axios";
 
 export const authOptions = {
   providers: [
@@ -11,25 +10,21 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account, profile }) {
       // Persist the OAuth access_token to the token right after signin
       if (account) {
         token.accessToken = account.access_token;
-
-        // //make db call here
-        // const { data } = await axios.post("/api/add-user", {
-        //   address: "12324",
-        // });
-        // token.dbUser = data;
+      }
+      if (profile) {
+        token.userProfile = profile;
       }
       return token;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken;
-      //   session.dbUser = token.dbUser;
-      //get db data here
-
+      session.user.id = token.userProfile.data.id;
+      session.user.username = token.userProfile.data.username;
       return session;
     },
   },

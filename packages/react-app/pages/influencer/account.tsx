@@ -8,7 +8,7 @@ const Account = () => {
       redirect: false,
     });
   };
-
+  console.log(session);
   return (
     <>
       <h3 className="mb-6">Connect your socials</h3>
