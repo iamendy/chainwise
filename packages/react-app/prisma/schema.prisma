@@ -10,25 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id @default(cuid())
-  address String @unique
-  isInfluencer Boolean @default(false)
-  
-  influencerId String?
-  influencer Influencer[]
-  //campaign Campaign[]
-  createdAt DateTime @default(now())
-  @@map("users")
-}
-
 model Influencer {
   id String @id @default(cuid())
-  userAddress String 
-  username String
-  followers Int
-  profileLink String
-  user  User    @relation(fields: [userAddress], references: [address])
+  userAddress String @unique
+  username String @unique
   createdAt DateTime @default(now())
   campaigns Campaign[]
   @@map("influencers")
@@ -52,6 +37,15 @@ model Campaign {
   assignedTo Influencer? @relation(fields: [influencerId], references: [id])
   //creator User @relation(fields: [userAdd], references: [address])
   @@map("campaigns")
+}
+
+model InfluencerCampaign{
+  id String @id @default(cuid())
+  campaignId String
+  influencerAddress String
+  status Boolean @default(false) /// true - accepted or false - pending
+  createdAt DateTime @default(now())
+  @@map("influencer-campaign")
 }
 
 model Milestones{

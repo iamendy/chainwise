@@ -25,7 +25,8 @@ const Faq = () => {
 
             <div className="px-4 pb-5 sm:px-6 sm:pb-6">
               <p className="text-gray-500">
-                Connect your wallet, create a campaign and set milestones.
+                Connect your wallet, create a campaign, set milestones and
+                deposit $CELO.
               </p>
             </div>
           </div>
@@ -60,9 +61,9 @@ const Faq = () => {
 
             <div className="px-4 pb-5 sm:px-6 sm:pb-6">
               <p className="text-gray-500">
-                The system matches both creator and influencer and the
-                influencer gets paid as they reach set milestones. The more
-                deliveries, the better the influencer on-chain ratings
+                The creator selects a preferred influencer, and the influencer
+                gets paid as they reach set milestones. The more deliveries, the
+                better the influencer on-chain ratings.
               </p>
             </div>
           </div>

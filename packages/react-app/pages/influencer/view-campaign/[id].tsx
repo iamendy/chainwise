@@ -1,4 +1,4 @@
-import { Back, Select } from "../../../components/icons";
+import { Back } from "../../../components/icons";
 import { useRouter } from "next/router";
 import axios from "axios";
 import LinkExt from "../../../components/icons/LinkExt";
@@ -6,17 +6,12 @@ import getDate from "../../../helpers/formatDate";
 import Milestones from "../../../components/influencer/Milestones";
 import { useQuery } from "@tanstack/react-query";
 import truncate from "../../../helpers/truncate";
-import { useState } from "react";
-import { useAccount } from "wagmi";
-import { useSession } from "next-auth/react";
+
+import BtnStatus from "../../../components/influencer/BtnStatus";
 
 const ViewCampaign = () => {
   const router = useRouter();
-  const [toggleApply, setToggleApply] = useState(false);
-  const { address } = useAccount();
-  const { data: session } = useSession();
 
-  //console.log(session?.accessToken);
   const getCampaign = async () => {
     const { data } = await axios.get(
       `/api/campaign/get-campaign?id=${router?.query?.id}`
@@ -31,14 +26,6 @@ const ViewCampaign = () => {
 
   //get completed milestones count
   const completed = campaign?.milestones?.filter((d) => d.status == 2);
-
-  const applyForCampaign = async () => {
-    const { data } = await axios.post("/api/campaign/apply-for-campaign", {
-      address,
-    });
-
-    console.log(data);
-  };
 
   return (
     <>
@@ -72,32 +59,12 @@ const ViewCampaign = () => {
             )}
           </div>
 
-          <button
-            onClick={() => setToggleApply(!toggleApply)}
-            className="flex py-1 px-2 hover:bg-black/80 active:bg-black rounded-sm justify-center items-center bg-black text-white "
-          >
-            <Select />
-            <span>Apply </span>
-          </button>
-
-          {toggleApply && (
-            <div className="absolute flex flex-col bg-gray-50 top-[100%] right-0 w-[200px] p-2 shadow">
-              <span>Apply for this promotion? </span>
-              <div className="flex gap-x-2 mt-1 justify-end">
-                <button
-                  onClick={() => applyForCampaign()}
-                  className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm"
-                >
-                  Yes
-                </button>{" "}
-                <button
-                  onClick={() => setToggleApply(false)}
-                  className="border border-black leading-none px-2 py-1 rounded-md text-sm"
-                >
-                  No
-                </button>
-              </div>
-            </div>
+          {campaign?.status > 0 ? (
+            <button className="bg-gray-400 pointer-events-none text-white px-2 py-1 rounded-sm">
+              Assigned
+            </button>
+          ) : (
+            <BtnStatus campaignId={campaign?.id} />
           )}
         </div>
 
