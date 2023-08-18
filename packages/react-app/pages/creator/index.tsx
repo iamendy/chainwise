@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import axios from "axios";
-import OngoingCampaign from "../../components/creator/OngoingCampaign";
-import CompletedCampaign from "../../components/creator/CompletedCampaign";
-import PendingTab from "../../components/creator/PendingTab";
-import OngoingTab from "../../components/creator/OngoingTab";
-import CompletedTab from "../../components/creator/CompletedTab";
+import OngoingCampaign from "../../components/OngoingCampaign";
+import CompletedCampaign from "../../components/CompletedCampaign";
+import PendingTab from "../../components/PendingTab";
+import OngoingTab from "../../components/OngoingTab";
+import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
 
 const Dashboard = () => {

@@ -37,7 +37,7 @@ const ViewCampaign = () => {
     <>
       <div
         onClick={() => router?.back()}
-        className="flex mb-4 hover:underline w-fit"
+        className="flex cursor-pointer mb-4 hover:underline w-fit"
       >
         <Back />
         back
@@ -59,7 +59,7 @@ const ViewCampaign = () => {
             <h3 className="text-lg font-bold">{campaign?.name}</h3>
 
             <p className="text-gray-400">
-              Influencer .
+              Influencer •{" "}
               {campaign?.status == 2 ? (
                 <a
                   href={`https://twitter.com/${campaign?.assignedTo?.username}`}

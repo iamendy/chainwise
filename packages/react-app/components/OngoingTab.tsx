@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Twitter } from "../icons";
+import { Twitter } from "./icons";
 import Campaign from "./Campaign";
 
-const CompletedTab = ({ campaigns }) => {
+const OngoingTab = ({ campaigns }) => {
   return (
     <>
       {campaigns?.length > 0 ? (
@@ -13,10 +13,10 @@ const CompletedTab = ({ campaigns }) => {
         </div>
       ) : (
         <div className="text-center mt-4 min-h-[150px] flex items-center justify-center">
-          <p>No completed Campaign</p>
+          <p>No Ongoing Campaign</p>
         </div>
       )}
     </>
   );
 };
-export default CompletedTab;
+export default OngoingTab;

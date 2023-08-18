@@ -1,28 +1,24 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../prisma";
 
-type Data = {
-  msg: any;
-};
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  if (req.method === "PATCH") {
-    const milestoneId = req.body.milestoneId;
+  if (req.method === "GET") {
+    const campaignId = req?.query.campaignId;
 
     try {
-      const milestone = await prisma.milestones.update({
+      const milestones = await prisma.milestones.findMany({
         where: {
-          id: milestoneId,
+          campaignId,
         },
-        data: {
-          status: 1,
+        include: {
+          campaign: true,
         },
       });
 
-      res.status(200).json({ milestone });
+      res.status(200).json(milestones);
     } catch (e) {
       return res.status(500).json({ msg: e });
     }

@@ -44,14 +44,14 @@ const ViewCampaign = () => {
 
             {campaign?.status == 0 ? (
               <p className="text-gray-400">
-                Creator .{" "}
+                Creator •{" "}
                 <span className="text-black hover:underline cursor-pointer">
                   {truncate(campaign?.userAdd)}
                 </span>
               </p>
             ) : (
               <p className="text-gray-400">
-                Influencer .{" "}
+                Influencer •{" "}
                 <span className="text-black hover:underline cursor-pointer">
                   @frankdegods{" "}
                 </span>
@@ -96,10 +96,7 @@ const ViewCampaign = () => {
           </p>
         </div>
 
-        <Milestones
-          milestones={campaign?.milestones}
-          amount={campaign?.amount}
-        />
+        <Milestones campaignid={campaign?.id} amount={campaign?.amount} />
       </div>
     </>
   );

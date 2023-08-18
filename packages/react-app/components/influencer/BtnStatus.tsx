@@ -14,7 +14,6 @@ const BtnStatus = ({ campaignId }) => {
       influencerAdd,
       campaignId: campaignId,
     });
-    console.log(data);
     return data;
   };
 
@@ -26,7 +25,6 @@ const BtnStatus = ({ campaignId }) => {
         campaignId,
       }
     );
-    console.log(data);
     return data;
   };
 
