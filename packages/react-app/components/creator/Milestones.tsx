@@ -1,4 +1,3 @@
-import { Check } from "../icons";
 import Milestone from "./Milestone";
 
 const Milestones = ({ milestones, amount }) => {

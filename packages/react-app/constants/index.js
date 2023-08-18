@@ -119,7 +119,7 @@ export const connect = {
       type: "function",
     },
   ],
-  address: "0x99C5D88187BC8aBb15874EB3F896530F5EcB87f4",
+  address: "0xa88B08e3384Af4eE3549CA9F55C5DF0bB317AC2F",
 };
 
 export default connect;

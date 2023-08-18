@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Bolt, Twitter } from "../icons";
 import getDate from "../../helpers/formatDate";
+import PendingCount from "./PendingCount";
 
 const Campaign = ({ campaign }) => {
   const completed = campaign?.milestones.filter((d) => d.status == 2);
@@ -10,14 +11,7 @@ const Campaign = ({ campaign }) => {
       href={`/creator/view-campaign/${campaign?.id}`}
       className="border rounded-lg p-2 relative"
     >
-      {campaign.status == 0 && (
-        <div className="absolute top-2 right-2">
-          <div className="bg-slate-200 w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-            <Bolt />
-            <span className="text-sm font-semibold">2</span>
-          </div>
-        </div>
-      )}
+      {campaign.status == 0 && <PendingCount campaignId={campaign?.id} />}
       <div>
         <div>
           <b>{campaign.name}</b> <br />

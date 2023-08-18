@@ -1,4 +1,11 @@
-import { Back, Bolt, Select, Star, Twitter } from "../../../components/icons";
+import {
+  Back,
+  Bolt,
+  Check,
+  Select,
+  Star,
+  Twitter,
+} from "../../../components/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -6,6 +13,8 @@ import LinkExt from "../../../components/icons/LinkExt";
 import getDate from "../../../helpers/formatDate";
 import Milestones from "../../../components/creator/Milestones";
 import { useQuery } from "@tanstack/react-query";
+import PendingInfluencers from "../../../components/creator/PendingInfluencers";
+import { spawn } from "child_process";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -34,74 +43,43 @@ const ViewCampaign = () => {
         back
       </div>
 
-      <h3 className="mb-4 flex items-center gap-x-2">
-        {" "}
-        <Bolt /> Interested Influencers
-      </h3>
-      <div className="grid grid-cols-3 gap-x-4 mb-4">
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div>
-            <b className="hover:underline cursor-pointer">@frankdenero</b>
-
-            <p className="text-[14px]">Web3 gaming data analyst</p>
-
-            <div className=" w-fit  flex items-center gap-x-1 leading-none text-[12px] rounded-sm mt-2">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div className="bg-gray-20 w-fit flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-                <Twitter />
-                <span>2.1k</span>
-              </div>
-
-              <div className="bg-slate-200 hover:bg-slate-100 cursor-pointer w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg">
-                <Select />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div>
-            <b className="hover:underline cursor-pointer">@frankdenero</b>
-
-            <p className="text-[14px]">Web3 gaming data analyst</p>
-
-            <div className=" w-fit  flex items-center gap-x-1 leading-none text-[12px] rounded-sm mt-2">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-            </div>
-
-            <div className="flex items-center justify-between mt-4">
-              <div className="bg-gray-20 w-fit flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-                <Twitter />
-                <span>2.1k</span>
-              </div>
-
-              <div className="bg-slate-200 hover:bg-slate-100 cursor-pointer w-8 h-8 flex items-center justify-center overflow-hidden rounded-lg">
-                <Select />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {campaign?.status == 0 && (
+        <>
+          <h3 className="mb-4 flex items-center gap-x-2">
+            {" "}
+            <Bolt /> Interested Influencers
+          </h3>
+          <PendingInfluencers campaignId={campaign?.id} />
+        </>
+      )}
 
       <div className="rounded-xl bg-white p-4 shadow">
-        <div className="mb-4">
-          <h3 className="text-lg font-bold">{campaign?.name}</h3>
+        <div className="mb-4 flex justify-between items-center">
+          <div>
+            <h3 className="text-lg font-bold">{campaign?.name}</h3>
 
-          <p className="text-gray-400">
-            Influencer .{" "}
-            <span className="text-black hover:underline cursor-pointer">
-              @frankdegods{" "}
-            </span>
-          </p>
+            <p className="text-gray-400">
+              Influencer .
+              {campaign?.status == 2 ? (
+                <a
+                  href={`https://twitter.com/${campaign?.assignedTo?.username}`}
+                  target="_blank"
+                  className="text-black hover:underline cursor-pointer"
+                >
+                  @{campaign?.assignedTo?.username}
+                </a>
+              ) : (
+                <span className="text-black hover:underline cursor-pointer">
+                  pending
+                </span>
+              )}
+            </p>
+          </div>
+          <div>
+            <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+              <Check /> Ongoing
+            </button>
+          </div>
         </div>
 
         <p className="mb-4">{campaign?.description}</p>

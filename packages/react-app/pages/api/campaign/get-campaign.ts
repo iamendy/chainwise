@@ -13,6 +13,7 @@ export default async function handler(
         },
         include: {
           milestones: true,
+          assignedTo: true,
         },
       });
 

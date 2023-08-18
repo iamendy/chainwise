@@ -5,20 +5,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  if (req.method === "POST") {
-    const { campaignId, influencerAddress } = req.body;
-    console.log(campaignId, influencerAddress);
+  if (req.method === "GET") {
+    const { campaignId } = req.query;
+    console.log(campaignId);
     try {
-      const applied = await prisma.influencerCampaign.findFirst({
+      const applied = await prisma.influencerCampaign.findMany({
         where: {
           campaignId,
-          influencerAddress,
         },
       });
 
-      console.log(applied);
-
-      res.status(200).json(applied);
+      res.status(200).json({ count: applied?.length });
     } catch (e) {
       return res.status(500).json({ msg: e });
     }

@@ -14,8 +14,10 @@ model Influencer {
   id String @id @default(cuid())
   userAddress String @unique
   username String @unique
+  tagline String? 
   createdAt DateTime @default(now())
   campaigns Campaign[]
+  appliedTo InfluencerCampaign[]
   @@map("influencers")
 }
 
@@ -27,14 +29,14 @@ model Campaign {
   amount String? @default("0")
   status Int @default(-1) /// -1 draft, 0 - pending, 1 - completed, 2 - ongoing
   userAdd String
-  influencerId String? 
+  influencerAddress String? 
   description String 
   startDate DateTime? @default(now())
   endDate DateTime? @default(now())
   createdAt DateTime @default(now())
 
   milestones Milestones[]
-  assignedTo Influencer? @relation(fields: [influencerId], references: [id])
+  assignedTo Influencer? @relation(fields: [influencerAddress], references: [userAddress])
   //creator User @relation(fields: [userAdd], references: [address])
   @@map("campaigns")
 }
@@ -45,6 +47,7 @@ model InfluencerCampaign{
   influencerAddress String
   status Boolean @default(false) /// true - accepted or false - pending
   createdAt DateTime @default(now())
+  influencer Influencer? @relation(fields: [influencerAddress], references: [userAddress])
   @@map("influencer-campaign")
 }
 

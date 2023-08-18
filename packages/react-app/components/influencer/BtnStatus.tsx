@@ -35,20 +35,19 @@ const BtnStatus = ({ campaignId }) => {
     queryKey: ["apply", campaignId, influencerAdd],
   });
 
-  console.log(applied);
-
-  const { isLoading, data } = useMutation({
+  const {
+    isLoading,
+    data,
+    mutate: apply,
+  } = useMutation({
     mutationFn: applyForCampaign,
     onSuccess: () => {
-      console.log("success");
       setToggleApply(false);
       queryClient.invalidateQueries({
         queryKey: ["apply"],
       });
     },
   });
-
-  console.log(data);
 
   return (
     <>
@@ -69,7 +68,7 @@ const BtnStatus = ({ campaignId }) => {
           <span>Apply for this promotion? </span>
           <div className="flex gap-x-2 mt-1 justify-end">
             <button
-              onClick={() => applyForCampaign()}
+              onClick={() => apply()}
               className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm"
             >
               Yes
