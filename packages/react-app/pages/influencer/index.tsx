@@ -8,6 +8,7 @@ import OngoingTab from "../../components/OngoingTab";
 import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+import Earnings from "../../components/influencer/Earnings";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Ongoing");
@@ -64,15 +65,7 @@ const Dashboard = () => {
 
         <CompletedCampaign count={completed?.length} />
 
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
-          <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
-            <Card />
-          </div>
-          <div>
-            <b>{total || 0} CELO</b>
-            <p className="text-[14px]"> Delivery Earnings </p>
-          </div>
-        </div>
+        <Earnings />
       </div>
 
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
