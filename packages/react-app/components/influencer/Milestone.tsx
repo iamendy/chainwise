@@ -87,7 +87,7 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
         <div>
           {Math.round((amountPerMilestone + Number.EPSILON) * 100) / 100} CELO
         </div>
-        {milestone?.status == 0 && (
+        {milestone?.campaign?.status == 2 && (
           <div className="bg-gray-200 w-8 h-8 cursor-pointer flex hover:bg-gray-300 active:bg-gray-200 items-center justify-center rounded-full overflow-hidden">
             <RoundCheck />
           </div>

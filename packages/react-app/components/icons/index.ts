@@ -19,6 +19,7 @@ import Check from "./Check";
 import User from "./User";
 import RoundCheck from "./RoundCheck";
 import Back from "./Back";
+import Pending from "./Pending";
 
 export {
   Menu,
@@ -42,4 +43,5 @@ export {
   User,
   RoundCheck,
   Back,
+  Pending,
 };

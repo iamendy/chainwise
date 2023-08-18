@@ -1,19 +1,20 @@
-import { Card } from "../../components/icons";
+import { Card, Star } from "../../components/icons";
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import axios from "axios";
 import OngoingCampaign from "../../components/OngoingCampaign";
 import CompletedCampaign from "../../components/CompletedCampaign";
-import PendingTab from "../../components/PendingTab";
 import OngoingTab from "../../components/OngoingTab";
 import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Ongoing");
 
   const tabs = ["Ongoing", "Completed"];
 
+  const { data: session } = useSession();
   const { address } = useAccount();
 
   //get all user campaign
@@ -43,6 +44,21 @@ const Dashboard = () => {
 
   return (
     <>
+      <div className="mb-6 flex justify-between items-center">
+        <h3>Welcome {session?.user?.username}, </h3>
+
+        <div className="flex items-center gap-x-2">
+          <div className="flex">
+            <Star big={true} />
+            <Star big={true} />
+            <Star big={true} />
+            <Star big={true} />
+          </div>
+
+          <div className="text-sm">4.2/5 ratings</div>
+        </div>
+      </div>
+
       <div className="flex justify-between items-center">
         <OngoingCampaign count={ongoing?.length} />
 
@@ -54,7 +70,7 @@ const Dashboard = () => {
           </div>
           <div>
             <b>{total || 0} CELO</b>
-            <p className="text-[14px]"> Marketing goals </p>
+            <p className="text-[14px]"> Delivery Earnings </p>
           </div>
         </div>
       </div>
@@ -88,20 +104,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-{
-  /* <div className="mb-6 flex justify-between items-center">
-  <h3>Welcome, 0x323</h3>
-
-  <div className="flex items-center gap-x-2">
-    <div className="flex">
-      <Star big={true} />
-      <Star big={true} />
-      <Star big={true} />
-      <Star big={true} />
-    </div>
-
-    <div className="text-sm">4.2/5 ratings</div>
-  </div>
-</div>; */
-}

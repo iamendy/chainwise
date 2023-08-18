@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 const PendingCount = ({ campaignId }) => {
   const getPendingCount = async () => {
     const { data } = await axios.get(
-      `/api/campaign/get-pending-count?campaignid=${campaignId}`
+      `/api/campaign/get-pending-count?campaignId=${campaignId}`
     );
     return data.count;
   };

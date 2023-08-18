@@ -1,4 +1,4 @@
-import { Back } from "../../../components/icons";
+import { Back, Check } from "../../../components/icons";
 import { useRouter } from "next/router";
 import axios from "axios";
 import LinkExt from "../../../components/icons/LinkExt";
@@ -6,7 +6,6 @@ import getDate from "../../../helpers/formatDate";
 import Milestones from "../../../components/influencer/Milestones";
 import { useQuery } from "@tanstack/react-query";
 import truncate from "../../../helpers/truncate";
-
 import BtnStatus from "../../../components/influencer/BtnStatus";
 
 const ViewCampaign = () => {
@@ -60,9 +59,15 @@ const ViewCampaign = () => {
           </div>
 
           {campaign?.status > 0 ? (
-            <button className="bg-gray-400 pointer-events-none text-white px-2 py-1 rounded-sm">
-              Assigned
-            </button>
+            campaign?.status == 1 ? (
+              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+                <Check /> Completed
+              </button>
+            ) : (
+              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+                Ongoing
+              </button>
+            )
           ) : (
             <BtnStatus campaignId={campaign?.id} />
           )}

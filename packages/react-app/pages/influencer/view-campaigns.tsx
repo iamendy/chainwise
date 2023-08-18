@@ -17,7 +17,7 @@ const ViewCampaigns = () => {
 
   return (
     <>
-      <h3 className=" mb-4">Available Campaigns</h3>
+      <h3 className=" mb-4">Listed Campaigns</h3>
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
         {campaigns?.length > 0 ? (
           <div className="lg:grid lg:grid-cols-2 gap-3">
@@ -27,7 +27,7 @@ const ViewCampaigns = () => {
           </div>
         ) : (
           <div className="text-center mt-4 min-h-[150px] flex items-center justify-center">
-            <p>No Available Campaigns found</p>
+            <p>No Listed Campaigns found</p>
           </div>
         )}
       </div>

@@ -1,20 +1,11 @@
-import {
-  Back,
-  Bolt,
-  Check,
-  Select,
-  Star,
-  Twitter,
-} from "../../../components/icons";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Back, Bolt, Check } from "../../../components/icons";
 import axios from "axios";
 import LinkExt from "../../../components/icons/LinkExt";
 import getDate from "../../../helpers/formatDate";
 import Milestones from "../../../components/creator/Milestones";
 import { useQuery } from "@tanstack/react-query";
 import PendingInfluencers from "../../../components/creator/PendingInfluencers";
-import { spawn } from "child_process";
+import { useRouter } from "next/router";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -60,7 +51,7 @@ const ViewCampaign = () => {
 
             <p className="text-gray-400">
               Influencer •{" "}
-              {campaign?.status == 2 ? (
+              {campaign?.status > 0 ? (
                 <a
                   href={`https://twitter.com/${campaign?.assignedTo?.username}`}
                   target="_blank"
@@ -69,16 +60,20 @@ const ViewCampaign = () => {
                   @{campaign?.assignedTo?.username}
                 </a>
               ) : (
-                <span className="text-black hover:underline cursor-pointer">
-                  pending
-                </span>
+                <span className="text-gray-500">not assigned</span>
               )}
             </p>
           </div>
           <div>
-            <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
-              <Check /> Ongoing
-            </button>
+            {campaign?.status == 1 ? (
+              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+                <Check /> Completed
+              </button>
+            ) : campaign?.status == 1 ? (
+              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+                Ongoing
+              </button>
+            ) : null}
           </div>
         </div>
 

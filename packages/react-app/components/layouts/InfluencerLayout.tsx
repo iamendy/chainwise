@@ -26,7 +26,7 @@ const InfluencerLayout = ({ children }: { children: React.ReactNode }) => {
                 router.asPath == "/influencer/view-campaigns" && "bg-gray-300"
               }`}
             >
-              Campaigns
+              Listed Campaigns
             </Link>
 
             <Link
