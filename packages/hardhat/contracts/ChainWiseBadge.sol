@@ -10,10 +10,12 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    address private chainwiseAdress;
 
-    constructor() ERC721("ChainWise Verifier", "CWV") {}
+    constructor() ERC721("ChainWise Influencer Badge", "CIB") {}
 
-    function safeMint(address to, string memory uri) public  {
+    function safeMint(address to, string memory uri) public {
+        require(msg.sender == owner() || msg.sender == chainwiseAdress);
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
@@ -35,6 +37,10 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage, Ownable {
     {
         require(from == address(0) || to == address(0), "Token not transferable");
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function approveBaseContract(address contractAddress) external onlyOwner {
+        chainwiseAdress = contractAddress;
     }
 
     // The following functions are overrides required by Solidity.

@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "./ChainWiseBadge.sol";
+import "./IChainWiseBadge.sol";
 
 contract ChainWiseAlt is Ownable, Pausable {
     uint public systemFee;                                                //Fee(percentage) by the system requested from the influencer for every succesfull promo
@@ -12,8 +13,6 @@ contract ChainWiseAlt is Ownable, Pausable {
     uint public totalCampaigns;                                           //Total number of campaigns in the platform
     uint public totalConfirmedCampaigns;                                  //Total number of resolved/successful executed campaigns in the platform
     uint public totalDisputedCampaigns;                                   //Total number of unresolved campaigns in the platform
-
-    ChainWiseBadge public chainwiseBadge;                                 //Experimental- ChainWiseBadge Contract instance and should be private
     address public chainwiseBadgeAddress;                                 //Experimental- ChainWiseBadge Contract address  and should be private
     
     mapping (uint => Campaign) allCampaigns;                              //Mapping of campaignId to campaign details
@@ -59,7 +58,6 @@ contract ChainWiseAlt is Ownable, Pausable {
 
     constructor(uint _systemPercentageFee, address _badgeAddr) {
         systemFee = _systemPercentageFee;
-        chainwiseBadge = ChainWiseBadge(_badgeAddr);
         chainwiseBadgeAddress = _badgeAddr;
     }
 
@@ -273,11 +271,8 @@ contract ChainWiseAlt is Ownable, Pausable {
             // if it is influencer's last milestone and has not received a badge yet.
             if (isLastMilestone && !_influencer.hasBadge) {         
                 //Mint soulBound token from our ChainWiseBadge contract to influencer as badge
-
-                //chainwiseBadge.safeMint(_influencer.influencer, "Put token uri");
-                // IERC721(chainwiseBadgeAddress).safeMint(_influencer.influencer, "Put token uri");
-                //(bool success,) = address(chainwiseBadge).delegatecall(abi.encodeWithSignature("safeMint(address, string)", _influencer.influencer,"Put token uri"));
-                //require(success, "Failed to give badge");
+                //Must approve this contract address on ChainWiseBadge contract to mint out tokens
+                IChainWiseBadge(chainwiseBadgeAddress).safeMint(_influencer.influencer,"ipfs://bafybeiapbctz46f2zlougnqjlo63n7ysvee7lfrkfao4ay7xeio2rcdiei/");
                 _influencer.hasBadge = true;
                 emit Action(campaignId, "YOU ARE VERIFIED", Status.COMPLETED , msg.sender);  //Revisit
             }
@@ -289,15 +284,5 @@ contract ChainWiseAlt is Ownable, Pausable {
 
         return true;
     }
-
-    //Only the platform can refund the creator after resolution 
-    // function refundCreator(uint id, uint milestoneIndex) public onlyOwner returns(bool) {
-    //     require(!milestonesByCompaignID[id][milestoneIndex].isAccepted, "Milestone execution already approved");
-    //     // code
-
-    //     emit Action(id, "CAMPAIGN REFUNDED", Status.REFUNDED , msg.sender);
-
-    //     return true;
-    // }
 
 }
