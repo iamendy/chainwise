@@ -41,10 +41,14 @@ const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
     args: [campaignId, influencer?.userAddress],
   });
 
-  const { writeAsync, isLoading: isLoadingMatch } = useContractWrite(config);
+  const {
+    writeAsync,
+    isLoading: isLoadingMatch,
+    data: tx,
+  } = useContractWrite(config);
 
   const { isLoading: isTx } = useWaitForTransaction({
-    hash: data?.hash,
+    hash: tx?.hash,
     onSuccess() {
       console.log("write to blockchain success");
       queryClient.invalidateQueries({ queryKey: ["campaign"] });

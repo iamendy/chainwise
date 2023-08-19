@@ -85,10 +85,10 @@ const Milestone = ({ milestone, amountPerMilestone, settledPerMilestone }) => {
 
       <div className="flex items-center gap-x-2">
         <div className="flex flex-col text-right">
-          <span>{parseFloat(amountPerMilestone.toFixed(4))} CELO </span>
-          {settledPerMilestone && (
-            <small>{parseFloat(settledPerMilestone.toFixed(4))} CELO</small>
-          )}
+          <span>
+            {settledPerMilestone && parseFloat(settledPerMilestone.toFixed(4))}{" "}
+            CELO{" "}
+          </span>
         </div>
         {milestone?.campaign?.status == 2 && (
           <div className="bg-gray-200 w-8 h-8 cursor-pointer flex hover:bg-gray-300 active:bg-gray-200 items-center justify-center rounded-full overflow-hidden">

@@ -9,6 +9,7 @@ import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import Earnings from "../../components/influencer/Earnings";
+import Rating from "../../components/influencer/Rating";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Ongoing");
@@ -48,16 +49,7 @@ const Dashboard = () => {
       <div className="mb-6 flex justify-between items-center">
         <h3>Welcome {session?.user?.username}, </h3>
 
-        <div className="flex items-center gap-x-2">
-          <div className="flex">
-            <Star big={true} />
-            <Star big={true} />
-            <Star big={true} />
-            <Star big={true} />
-          </div>
-
-          <div className="text-sm">4.2/5 ratings</div>
-        </div>
+        <Rating />
       </div>
 
       <div className="flex justify-between items-center">

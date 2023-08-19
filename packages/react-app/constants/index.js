@@ -3,6 +3,55 @@ export const connect = {
     {
       inputs: [
         {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+        {
+          internalType: "uint256",
+          name: "milestoneCount",
+          type: "uint256",
+        },
+      ],
+      name: "activateCampaign",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+        {
+          internalType: "address",
+          name: "influencer",
+          type: "address",
+        },
+      ],
+      name: "matchCampaign",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+      ],
+      name: "payMilestone",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
           internalType: "uint256",
           name: "_systemFee",
           type: "uint256",
@@ -19,17 +68,12 @@ export const connect = {
     {
       inputs: [
         {
-          internalType: "string",
-          name: "campaignId",
-          type: "string",
-        },
-        {
-          internalType: "uint256",
-          name: "milestoneCount",
-          type: "uint256",
+          internalType: "address",
+          name: "_recipient",
+          type: "address",
         },
       ],
-      name: "activateCampaign",
+      name: "withdraw",
       outputs: [],
       stateMutability: "payable",
       type: "function",
@@ -93,12 +137,44 @@ export const connect = {
     {
       inputs: [
         {
+          internalType: "address",
+          name: "_influencer",
+          type: "address",
+        },
+      ],
+      name: "getInfluencerRating",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
           internalType: "string",
           name: "campaignId",
           type: "string",
         },
       ],
       name: "getInfluencerTotalPayment",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "getSystemFee",
       outputs: [
         {
           internalType: "uint256",
@@ -117,63 +193,24 @@ export const connect = {
           type: "address",
         },
       ],
-      name: "isChainwiseInfluencer",
+      name: "influencers",
       outputs: [
         {
           internalType: "bool",
-          name: "",
+          name: "isVerified",
           type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "xp",
+          type: "uint256",
         },
       ],
       stateMutability: "view",
       type: "function",
     },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "campaignId",
-          type: "string",
-        },
-        {
-          internalType: "address",
-          name: "influencer",
-          type: "address",
-        },
-      ],
-      name: "matchCampaign",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "campaignId",
-          type: "string",
-        },
-      ],
-      name: "payMilestone",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_recipient",
-          type: "address",
-        },
-      ],
-      name: "withdraw",
-      outputs: [],
-      stateMutability: "payable",
-      type: "function",
-    },
   ],
-  address: "0x211BB4fD666217BC219EC3f9cA1b14B7E2B3D802",
+  address: "0x38F1989368ddcbD9C3517c8665Fca1C7E858e663",
 };
 
 export default connect;

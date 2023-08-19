@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Bolt, Twitter } from "./icons";
+import { Bolt, Check, Twitter } from "./icons";
 import getDate from "../helpers/formatDate";
 import PendingCount from "./PendingCount";
 import { useRouter } from "next/router";
@@ -14,13 +14,18 @@ const Campaign = ({ campaign }) => {
       className="border rounded-lg p-2 relative"
     >
       {campaign.status == 0 && <PendingCount campaignId={campaign?.id} />}
+
       <div>
         <div>
-          <b>{campaign.name}</b> <br />
+          <span className="flex justify-between items-center">
+            <b>{campaign.name}</b>
+            {campaign.status == 1 && <Check />}
+          </span>{" "}
           <small className="text-gray-400">
             {getDate(campaign?.startDate)} - {getDate(campaign?.endDate)}
           </small>
         </div>
+
         <p className="text-gray-400">
           influencer •{" "}
           {campaign?.status > 0 ? (
