@@ -69,7 +69,7 @@ const ViewCampaign = () => {
               <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
                 <Check /> Completed
               </button>
-            ) : campaign?.status == 1 ? (
+            ) : campaign?.status == 2 ? (
               <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
                 Ongoing
               </button>
@@ -105,10 +105,7 @@ const ViewCampaign = () => {
           </p>
         </div>
 
-        <Milestones
-          milestones={campaign?.milestones}
-          amount={campaign?.amount}
-        />
+        <Milestones campaignid={campaign?.id} amount={campaign?.amount} />
       </div>
     </>
   );

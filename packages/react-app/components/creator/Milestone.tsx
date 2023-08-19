@@ -2,6 +2,12 @@ import axios from "axios";
 import { Check, RoundCheck } from "../icons";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
+import connect from "../../constants";
 
 const Milestone = ({ milestone, amountPerMilestone }) => {
   const [toggle, setToggle] = useState(false);
@@ -22,14 +28,38 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
   const { mutate } = useMutation({
     mutationFn: updateMilestone,
     onSuccess: () => {
-      // Invalidate and refetch
+      // Invalidate
+      console.log("write to db");
       setToggle(false);
+    },
+  });
+
+  //call on-chain function to match Influencer
+  const { config } = usePrepareContractWrite({
+    address: connect.address,
+    abi: connect.abi,
+    functionName: "payMilestone",
+    args: [milestone?.campaign?.id],
+  });
+
+  const {
+    writeAsync,
+    isLoading: isLoadingMatch,
+    data,
+  } = useContractWrite(config);
+
+  const { isLoading: isTx } = useWaitForTransaction({
+    hash: data?.hash,
+    onSuccess() {
+      console.log("write to blockchain success");
+      queryClient.invalidateQueries({ queryKey: ["milestones"] });
       queryClient.invalidateQueries({ queryKey: ["campaign"] });
     },
   });
 
-  const handleUpdate = (e) => {
+  const payMilestone = async (e) => {
     e.stopPropagation();
+    await writeAsync?.();
     mutate();
   };
 
@@ -56,7 +86,7 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
           Approve delivery?
           <br />
           <button
-            onClick={(e) => handleUpdate(e)}
+            onClick={(e) => payMilestone(e)}
             className="bg-black text-white leading-none px-2 py-1 rounded-md text-sm"
           >
             Yes

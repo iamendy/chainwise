@@ -2,9 +2,13 @@ import axios from "axios";
 import Milestone from "./Milestone";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { useContractRead } from "wagmi";
+import connect from "../../constants";
+import { ethers } from "ethers";
 
 const Milestones = ({ campaignid, amount }) => {
-  const [amountPerMilestone, setAmountPerMilestone] = useState(0);
+  const [amountPerMilestone, setAmountPerMilestone] = useState<number>(0);
+  const [settledPerMilestone, setSettledPerMilestone] = useState<number>(0);
 
   const getMilestones = async () => {
     const { data } = await axios.get(
@@ -19,10 +23,22 @@ const Milestones = ({ campaignid, amount }) => {
     queryKey: ["milestones", campaignid],
   });
 
+  const { isLoading: loadingTotal, data: totalPayment } = useContractRead({
+    address: connect.address,
+    abi: connect.abi,
+    functionName: "getInfluencerTotalPayment",
+    args: [campaignid],
+  });
+
   //watch n calculate.
   useEffect(() => {
     setAmountPerMilestone(amount / milestones?.length);
-  }, [milestones]);
+    if (totalPayment) {
+      setSettledPerMilestone(
+        ethers.utils.formatEther(totalPayment) / milestones?.length
+      );
+    }
+  }, [milestones, totalPayment]);
 
   return (
     <div className="border rounded-lg p-4 flex flex-col gap-y-4">
@@ -30,13 +46,28 @@ const Milestones = ({ campaignid, amount }) => {
         <Milestone
           milestone={d}
           amountPerMilestone={amountPerMilestone}
+          settledPerMilestone={settledPerMilestone}
           key={i}
         />
       ))}
 
-      <div className="bg-gray-100 p-2 flex justify-between items-center rounded-lg">
-        <span className="font-bold">Total </span>
-        <span>{amount} CELO</span>
+      <div className="bg-gray-100 p-2 rounded-lg">
+        <div className="flex justify-between items-center">
+          <span className="font-bol">Total </span>
+          <span>{amount} CELO</span>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="font-bol"> System fee </span>
+          <span>-5%</span>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="font-bold">You'll receive </span>
+          <span>
+            {totalPayment && ethers.utils.formatEther(totalPayment)} CELO
+          </span>
+        </div>
       </div>
     </div>
   );
