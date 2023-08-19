@@ -52,6 +52,22 @@ export const connect = {
     {
       inputs: [
         {
+          internalType: "uint256",
+          name: "_systemFee",
+          type: "uint256",
+        },
+        {
+          internalType: "address",
+          name: "_badgeAddr",
+          type: "address",
+        },
+      ],
+      stateMutability: "nonpayable",
+      type: "constructor",
+    },
+    {
+      inputs: [
+        {
           internalType: "address",
           name: "_recipient",
           type: "address",
@@ -118,8 +134,83 @@ export const connect = {
       stateMutability: "view",
       type: "function",
     },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_influencer",
+          type: "address",
+        },
+      ],
+      name: "getInfluencerRating",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+      ],
+      name: "getInfluencerTotalPayment",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "getSystemFee",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      name: "influencers",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "isVerified",
+          type: "bool",
+        },
+        {
+          internalType: "uint256",
+          name: "xp",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
   ],
-  address: "0xa88B08e3384Af4eE3549CA9F55C5DF0bB317AC2F",
+  address: "0x38F1989368ddcbD9C3517c8665Fca1C7E858e663",
 };
 
 export default connect;

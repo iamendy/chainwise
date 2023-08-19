@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Bolt, Twitter } from "../icons";
+import { Bolt, Twitter } from "./icons";
 import Campaign from "./Campaign";
 
 const PendingTab = ({ campaigns }) => {

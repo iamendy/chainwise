@@ -1,4 +1,4 @@
-import { Select } from "../icons";
+import { RoundCheck, Select } from "../icons";
 import { useAccount } from "wagmi";
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -14,7 +14,6 @@ const BtnStatus = ({ campaignId }) => {
       influencerAdd,
       campaignId: campaignId,
     });
-    console.log(data);
     return data;
   };
 
@@ -26,7 +25,6 @@ const BtnStatus = ({ campaignId }) => {
         campaignId,
       }
     );
-    console.log(data);
     return data;
   };
 
@@ -60,7 +58,10 @@ const BtnStatus = ({ campaignId }) => {
           <span>Apply </span>
         </button>
       ) : (
-        <>Working</>
+        <div className="flex py-1 px-2 bg-gray-400 rounded-sm justify-center items-center text-white ">
+          <RoundCheck />
+          <span>Applied </span>
+        </div>
       )}
 
       {toggleApply && (

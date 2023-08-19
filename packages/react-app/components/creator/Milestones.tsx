@@ -1,7 +1,28 @@
+import { useEffect, useState } from "react";
 import Milestone from "./Milestone";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-const Milestones = ({ milestones, amount }) => {
-  const amountPerMilestone = amount / milestones?.length;
+const Milestones = ({ campaignid, amount }) => {
+  const [amountPerMilestone, setAmountPerMilestone] = useState(0);
+
+  const getMilestones = async () => {
+    const { data } = await axios.get(
+      `/api/campaign/get-milestones?campaignId=${campaignid}`
+    );
+
+    return data;
+  };
+
+  const { data: milestones, isLoading } = useQuery({
+    queryFn: getMilestones,
+    queryKey: ["milestones", campaignid],
+  });
+
+  //watch n calculate.
+  useEffect(() => {
+    setAmountPerMilestone(amount / milestones?.length);
+  }, [milestones]);
 
   return (
     <div className="border rounded-lg p-4 flex flex-col gap-y-4">

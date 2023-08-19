@@ -1,26 +1,40 @@
 import Link from "next/link";
-import { Bolt, Twitter } from "../icons";
-import getDate from "../../helpers/formatDate";
+import { Bolt, Check, Twitter } from "./icons";
+import getDate from "../helpers/formatDate";
 import PendingCount from "./PendingCount";
+import { useRouter } from "next/router";
 
 const Campaign = ({ campaign }) => {
   const completed = campaign?.milestones.filter((d) => d.status == 2);
+  const router = useRouter();
 
   return (
     <Link
-      href={`/creator/view-campaign/${campaign?.id}`}
+      href={`${router?.pathname}/view-campaign/${campaign?.id}`}
       className="border rounded-lg p-2 relative"
     >
       {campaign.status == 0 && <PendingCount campaignId={campaign?.id} />}
+
       <div>
         <div>
-          <b>{campaign.name}</b> <br />
+          <span className="flex justify-between items-center">
+            <b>{campaign.name}</b>
+            {campaign.status == 1 && <Check />}
+          </span>{" "}
           <small className="text-gray-400">
             {getDate(campaign?.startDate)} - {getDate(campaign?.endDate)}
           </small>
         </div>
+
         <p className="text-gray-400">
-          influencer <b className="text-black text-sm">Not assigned</b>
+          influencer •{" "}
+          {campaign?.status > 0 ? (
+            <b className="text-black text-sm">
+              @{campaign?.assignedTo?.username}
+            </b>
+          ) : (
+            <b className="text-black text-sm">Not assigned</b>
+          )}
         </p>
 
         <div className="flex items-center gap-x-2 mt-2">

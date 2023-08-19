@@ -9,17 +9,26 @@ export default async function handler(
     const address = req?.query.address;
 
     try {
-      const campaigns = await prisma.campaign.findMany({
+      const earnings = await prisma.campaign.findMany({
         where: {
-          userAdd: address,
+          influencerAddress: address,
+          status: 1,
         },
-        include: {
-          milestones: true,
-          assignedTo: true,
+        select: {
+          amount: true,
         },
       });
 
-      res.status(200).json({ campaigns });
+      //sum amounts
+      const totalAmount = earnings.reduce((acc, current) => {
+        const amount = parseFloat(current.amount);
+        if (!isNaN(amount)) {
+          return acc + amount;
+        }
+        return acc;
+      }, 0);
+
+      res.status(200).json(totalAmount);
     } catch (e) {
       return res.status(500).json({ msg: e });
     }

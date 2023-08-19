@@ -263,7 +263,7 @@ contract ChainWiseAlt is Ownable, Pausable {
                 totalConfirmedCampaigns +=1;
                 currentCampaign.campaignStatus = Status.COMPLETED;
                 emit Action(campaignId, "CAMPAIGN MILESTONES COMPLETED", Status.COMPLETED , msg.sender);
-            } else{  
+            } else {  
                 currentCampaign.campaignStatus = Status.ONGOING;
                 emit Action(campaignId, "CAMPAIGN MILESTONE ACCEPTED", Status.ONGOING , msg.sender);
             }

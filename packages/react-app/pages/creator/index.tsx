@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import axios from "axios";
-import OngoingCampaign from "../../components/creator/OngoingCampaign";
-import CompletedCampaign from "../../components/creator/CompletedCampaign";
-import PendingTab from "../../components/creator/PendingTab";
-import OngoingTab from "../../components/creator/OngoingTab";
-import CompletedTab from "../../components/creator/CompletedTab";
+import OngoingCampaign from "../../components/OngoingCampaign";
+import CompletedCampaign from "../../components/CompletedCampaign";
+import PendingTab from "../../components/PendingTab";
+import OngoingTab from "../../components/OngoingTab";
+import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
+import PendingCampaign from "../../components/PendingCampaign";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Pending");
@@ -46,12 +47,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="grid grid-cols-3 gap-2">
+        <PendingCampaign count={pending?.length} />
+
         <OngoingCampaign count={ongoing?.length} />
 
         <CompletedCampaign count={completed?.length} />
 
-        <div className="rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
+        <div className="col-span-3 flx justify-ed rounded-xl bg-white p-4 shadow flex gap-x-2 items-center">
           <div className="bg-slate-100 w-8 h-8 flex items-center justify-center rounded-full">
             <Card />
           </div>
