@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "./ChainWiseBadge.sol";
 import "./IChainWiseBadge.sol";
 
-contract ChainWiseAlt is Ownable, Pausable {
+contract ChainWise is Ownable, Pausable {
     uint public systemFee;                                                //Fee(percentage) by the system requested from the influencer for every succesfull promo
     uint public systemBalance;                                            //Balance accrued from fee charges
     uint public totalCampaigns;                                           //Total number of campaigns in the platform
@@ -263,7 +263,7 @@ contract ChainWiseAlt is Ownable, Pausable {
                 totalConfirmedCampaigns +=1;
                 currentCampaign.campaignStatus = Status.COMPLETED;
                 emit Action(campaignId, "CAMPAIGN MILESTONES COMPLETED", Status.COMPLETED , msg.sender);
-            } else {  
+            } else{  
                 currentCampaign.campaignStatus = Status.ONGOING;
                 emit Action(campaignId, "CAMPAIGN MILESTONE ACCEPTED", Status.ONGOING , msg.sender);
             }

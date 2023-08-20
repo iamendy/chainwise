@@ -3,30 +3,23 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-
-contract ChainWiseBadge is ERC721, ERC721URIStorage {
+contract ChainWiseBadge is ERC721, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-    
-    address chainWise;
+    address private chainwiseAdress;
 
-    modifier onlyChainWise() {
-        require(msg.sender == chainWise, "Only ChainWise allowed");
-        _;
-    }
+    constructor() ERC721("ChainWise Influencer Badge", "CIB") {}
 
-    constructor(address _chainWise) ERC721("Chainwise Verification Badge", "CVB") {
-        chainWise = _chainWise;
-    }
-
-    function safeMint(address to) public onlyChainWise()  {
-        _tokenIdCounter.increment();
+    function safeMint(address to, string memory uri) public {
+        require(msg.sender == owner() || msg.sender == chainwiseAdress);
         uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, "google.com/image");
+        _setTokenURI(tokenId, uri);
     }
 
     function burn(uint256 tokenId) external {
@@ -34,7 +27,9 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage {
         _burn(tokenId);
     }
 
-    // The following functions are overrides
+    function revoke(uint256 tokenId) external  {
+        _burn(tokenId);
+    }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
         internal
@@ -43,6 +38,12 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage {
         require(from == address(0) || to == address(0), "Token not transferable");
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
+
+    function approveBaseContract(address contractAddress) external onlyOwner {
+        chainwiseAdress = contractAddress;
+    }
+
+    // The following functions are overrides required by Solidity.
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
@@ -56,4 +57,3 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage {
         return super.supportsInterface(interfaceId);
     }
 }
-
