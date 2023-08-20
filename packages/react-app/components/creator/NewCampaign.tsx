@@ -1,11 +1,18 @@
 import { Cart } from "../icons";
-import { useContext } from "react";
+import { forwardRef, useContext, useState } from "react";
 import CampaignContext from "../../contexts/CampaignContext";
 import Input from "../Input";
 import Text from "../Text";
 import { useForm, FormProvider } from "react-hook-form";
 import { useAccount } from "wagmi";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+type Props = {
+  value: string;
+  onClick: () => void;
+};
 
 const NewCampaign = () => {
   const { campaign, setStep, setCampaign } = useContext(CampaignContext);
@@ -20,8 +27,6 @@ const NewCampaign = () => {
       .post("/api/campaign/create-campaign", {
         ...campaign,
         userAdd: address,
-        startDate: new Date(),
-        endDate: new Date(),
       })
       .then((d) => {
         //set campaign context
@@ -53,6 +58,52 @@ const NewCampaign = () => {
       .catch((e) => console.log(e));
   });
 
+  // eslint-disable-next-line react/display-name
+  const StartDatePicker = forwardRef(({ value, onClick }: Props, ref) => (
+    <div className="w-full overflow-hidden">
+      <div className="flex items-center justify-between">
+        <label className="text-sm font-medium" htmlFor="startDate">
+          Start Date
+        </label>
+      </div>
+
+      <input
+        required
+        className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+        placeholder="Select start date"
+        id="startDate"
+        value={value}
+        onClick={onClick}
+        //@ts-ignore
+        ref={ref}
+        readOnly
+      />
+    </div>
+  ));
+
+  // eslint-disable-next-line react/display-name
+  const EndDatePicker = forwardRef(({ value, onClick }: Props, ref) => (
+    <div className="w-full overflow-hidden">
+      <div className="flex items-center justify-between">
+        <label className="text-sm font-medium" htmlFor="endDate">
+          End Date
+        </label>
+      </div>
+
+      <input
+        required
+        className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+        placeholder="Select end date"
+        id="endDate"
+        value={value}
+        onClick={onClick}
+        //@ts-ignore
+        ref={ref}
+        readOnly
+      />
+    </div>
+  ));
+
   return (
     <FormProvider {...methods}>
       <form
@@ -82,15 +133,38 @@ const NewCampaign = () => {
             placeholder="https://twitter.com/xyz"
           />
 
-          <Input id="startDate" label="Start Date" placeholder="01/12/2023" />
+          <DatePicker
+            selected={campaign?.["startDate"]}
+            //@ts-ignore
+            customInput={<StartDatePicker />}
+            //@ts-ignore
+            onChange={(date) =>
+              setCampaign((prev: any) => ({
+                ...prev,
+                startDate: date,
+              }))
+            }
+          />
 
-          <Input id="endDate" label="End Date" placeholder="01/12/2023" />
+          <DatePicker
+            selected={campaign?.["endDate"]}
+            //@ts-ignore
+            customInput={<EndDatePicker />}
+            //@ts-ignore
+            onChange={(date) =>
+              setCampaign((prev: any) => ({
+                ...prev,
+                endDate: date,
+              }))
+            }
+          />
 
           <Text
             id="description"
             label="Description"
             placeholder="Enter short description"
           />
+
           {/* Checks if its a fresh campaign or an update */}
           <div className="col-span-2 grid justify-end">
             {campaign.id ? (
