@@ -43,8 +43,6 @@ const NewCampaign = () => {
       .patch(`/api/campaign/update-campaign`, {
         ...campaign,
         userAdd: address,
-        startDate: new Date(),
-        endDate: new Date(),
       })
       .then((d) => {
         //set campaign context

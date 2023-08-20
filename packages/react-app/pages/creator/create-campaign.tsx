@@ -16,26 +16,36 @@ const CreateCampaign = () => {
       <nav className="mb-8 flex" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
           <li className="inline-flex items-center">
-            <a
-              href="#"
-              className="ml-1 inline-flex text-sm font-medium text-gray-900 hover:underline md:ml-2"
-            >
+            <span className="ml-1 inline-flex text-sm font-medium text-gray-900  md:ml-2">
               Campaign
-            </a>
+            </span>
           </li>
-          {steps.map((step) => (
-            <li key={step}>
-              <div className="flex items-center">
-                <ChevronRight />
-                <a
-                  href="#"
-                  className="ml-1 text-sm font-medium text-gray-300 hover:underline md:ml-2"
-                >
-                  {step}
-                </a>
-              </div>
-            </li>
-          ))}
+
+          <li>
+            <div className="flex items-center">
+              <ChevronRight />
+              <span
+                className={`${
+                  step > 1 ? "text-gray-900" : "text-gray-300"
+                } ml-1 text-sm font-medium md:ml-2`}
+              >
+                Milestone
+              </span>
+            </div>
+          </li>
+
+          <li>
+            <div className="flex items-center">
+              <ChevronRight />
+              <span
+                className={`${
+                  step > 2 ? "text-gray-900" : "text-gray-300"
+                } ml-1 text-sm font-medium md:ml-2`}
+              >
+                Payment
+              </span>
+            </div>
+          </li>
         </ol>
       </nav>
 
