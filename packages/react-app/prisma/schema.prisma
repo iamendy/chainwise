@@ -15,6 +15,7 @@ model Influencer {
   userAddress String @unique
   username String @unique
   tagline String? 
+  isVerified Boolean @default(false)
   createdAt DateTime @default(now())
   campaigns Campaign[]
   appliedTo InfluencerCampaign[]

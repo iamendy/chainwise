@@ -1,13 +1,15 @@
 import {
   useAccount,
+  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
 import connect from "../../constants";
-import { Select, Star, Twitter } from "../icons";
+import { Bolt, Select, Star, Twitter } from "../icons";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Verified from "../icons/Verified";
 
 const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
   const queryClient = useQueryClient();
@@ -21,6 +23,13 @@ const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
 
     return data;
   };
+
+  const { data: res } = useContractRead({
+    address: connect.address,
+    abi: connect.abi,
+    functionName: influencer && "influencers",
+    args: [influencer?.userAddress],
+  });
 
   const {
     isLoading: isLoadingAccept,
@@ -66,24 +75,23 @@ const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
         <a
           target="_blank"
           href={`https://twitter.com/${influencer?.username}`}
-          className="hover:underline cursor-pointer font-semibold"
+          className="hover:underline flex items-center gap-x-1 cursor-pointer font-semibold"
         >
-          @{influencer?.username}
+          @{influencer?.username} {influencer?.isVerified && <Verified />}
         </a>
 
         <p className="text-[14px]">Web3 gaming data analyst</p>
 
-        <div className=" w-fit  flex items-center gap-x-1 leading-none text-[12px] rounded-sm mt-2">
-          <Star />
-          <Star />
-          <Star />
-          <Star />
-        </div>
-
         <div className="flex items-center justify-between mt-4">
-          <div className="bg-gray-20 w-fit flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-            <Twitter />
-            <span>2.1k</span>
+          <div className="flex items-center gap-x-2">
+            <div className="bg-gray-20 w-fit flex items-center leading-none text-[12px] rounded-sm">
+              <Bolt /> <span>{res && parseInt(res[2])}XP</span>
+            </div>
+
+            <div className="bg-gray-20 w-fit flex items-center leading-none text-[12px] rounded-sm">
+              <Twitter />
+              <span>50.3k</span>
+            </div>
           </div>
 
           <div

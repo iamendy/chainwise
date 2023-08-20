@@ -66,13 +66,13 @@ const ViewCampaign = () => {
           </div>
           <div>
             {campaign?.status == 1 ? (
-              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+              <div className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
                 <Check /> Completed
-              </button>
+              </div>
             ) : campaign?.status == 2 ? (
-              <button className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
+              <div className="bg-gray-600 flex items-center gap-x-1 px-3 py-1 text-white">
                 Ongoing
-              </button>
+              </div>
             ) : null}
           </div>
         </div>

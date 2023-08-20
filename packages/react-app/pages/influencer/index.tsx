@@ -1,6 +1,6 @@
 import { Card, Star } from "../../components/icons";
 import { useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import axios from "axios";
 import OngoingCampaign from "../../components/OngoingCampaign";
 import CompletedCampaign from "../../components/CompletedCampaign";
@@ -10,6 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import Earnings from "../../components/influencer/Earnings";
 import Rating from "../../components/influencer/Rating";
+import connect from "../../constants";
+import MintBadge from "../../components/influencer/MintBadge";
+import Verified from "../../components/icons/Verified";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Ongoing");
@@ -32,6 +35,14 @@ const Dashboard = () => {
     queryFn: getCampaigns,
   });
 
+  const { data: res, refetch } = useContractRead({
+    address: connect.address,
+    abi: connect.abi,
+    functionName: address && "influencers",
+    enabled: true,
+    args: [address],
+  });
+
   //filter campaigns by status
   const completed = campaigns?.filter((d) => d.status == 1);
   const ongoing = campaigns?.filter((d) => d.status == 2);
@@ -47,10 +58,17 @@ const Dashboard = () => {
   return (
     <>
       <div className="mb-6 flex justify-between items-center">
-        <h3>Welcome {session?.user?.username}, </h3>
+        <h3 className="flex items-center gap-x-1">
+          Welcome {session?.user?.username}{" "}
+          {res && res[0] && res[1] && <Verified />}
+        </h3>
 
         <Rating />
       </div>
+
+      {res && res[0] == true && res[1] == false && (
+        <MintBadge influencerAdd={address} refetch={refetch} />
+      )}
 
       <div className="flex justify-between items-center">
         <OngoingCampaign count={ongoing?.length} />

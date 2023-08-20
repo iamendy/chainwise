@@ -1,5 +1,5 @@
 import connect from "../../constants";
-import { Star } from "../icons";
+import { Bolt, Star } from "../icons";
 import { useAccount, useContractRead } from "wagmi";
 
 const Rating = () => {
@@ -13,14 +13,9 @@ const Rating = () => {
 
   return (
     <div className="flex items-center gap-x-2">
-      <div className="flex">
-        <Star big={true} />
-        <Star big={true} />
-        <Star big={true} />
-        <Star big={true} />
+      <div className="text-sm flex items-center font-semibold">
+        <Bolt /> <span>{parseInt(rating || 0)} XP</span>
       </div>
-
-      <div className="text-sm">XP: {parseInt(rating || 0)}</div>
     </div>
   );
 };

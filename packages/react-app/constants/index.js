@@ -3,6 +3,36 @@ export const connect = {
     {
       inputs: [
         {
+          internalType: "uint256",
+          name: "_systemFee",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "nonpayable",
+      type: "constructor",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "address",
+          name: "previousOwner",
+          type: "address",
+        },
+        {
+          indexed: true,
+          internalType: "address",
+          name: "newOwner",
+          type: "address",
+        },
+      ],
+      name: "OwnershipTransferred",
+      type: "event",
+    },
+    {
+      inputs: [
+        {
           internalType: "string",
           name: "campaignId",
           type: "string",
@@ -21,61 +51,14 @@ export const connect = {
     {
       inputs: [
         {
-          internalType: "string",
-          name: "campaignId",
-          type: "string",
-        },
-        {
           internalType: "address",
           name: "influencer",
           type: "address",
         },
       ],
-      name: "matchCampaign",
+      name: "activateInfluencerVerification",
       outputs: [],
       stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "string",
-          name: "campaignId",
-          type: "string",
-        },
-      ],
-      name: "payMilestone",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "_systemFee",
-          type: "uint256",
-        },
-        {
-          internalType: "address",
-          name: "_badgeAddr",
-          type: "address",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "constructor",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "_recipient",
-          type: "address",
-        },
-      ],
-      name: "withdraw",
-      outputs: [],
-      stateMutability: "payable",
       type: "function",
     },
     {
@@ -201,6 +184,11 @@ export const connect = {
           type: "bool",
         },
         {
+          internalType: "bool",
+          name: "hasMinted",
+          type: "bool",
+        },
+        {
           internalType: "uint256",
           name: "xp",
           type: "uint256",
@@ -209,8 +197,98 @@ export const connect = {
       stateMutability: "view",
       type: "function",
     },
+    {
+      inputs: [
+        {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+        {
+          internalType: "address",
+          name: "influencer",
+          type: "address",
+        },
+      ],
+      name: "matchCampaign",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "owner",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "string",
+          name: "campaignId",
+          type: "string",
+        },
+      ],
+      name: "payMilestone",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "renounceOwnership",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_badgeAddr",
+          type: "address",
+        },
+      ],
+      name: "setVerificationBadge",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "newOwner",
+          type: "address",
+        },
+      ],
+      name: "transferOwnership",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_recipient",
+          type: "address",
+        },
+      ],
+      name: "withdraw",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
+    },
   ],
-  address: "0x38F1989368ddcbD9C3517c8665Fca1C7E858e663",
+  address: "0x8aE12C5AA29A6e5E0bbe70EFBE13Ba163f4eFf29",
 };
 
 export default connect;
