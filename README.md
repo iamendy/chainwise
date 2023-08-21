@@ -24,7 +24,7 @@ After their first successful campaign delivery, the influencer/community can min
 
 We created 2 smart contracts in Solidity, [**Chainwise.sol**](https://github.com/iamendy/chainwise/blob/main/packages/hardhat/contracts/Chainwise.sol) and [**ChainwiseVerificationBadge.sol**](https://github.com/iamendy/chainwise/blob/main/packages/hardhat/contracts/ChainwiseVerificationBadge.sol).
 
-- The Chainwise contract handles the escrow, campaign creation and matching, and milestones tracking. This contract is deployed on CELO via - [https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code](https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code)
+- The Chainwise contract handles the escrow, campaign creation and matching, and milestones tracking. This contract is deployed on CELO via Bunzz - [https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code](https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code)
 
 - The ChainwiseVerificationBadge is used for on-chain verification. It is a soulbound NFT contract that is only after an influencer/community has succesfully delivered their first campaign. - 0x460cD7D70445BE4d2787cc6CD8fE3399C0d61087
 
