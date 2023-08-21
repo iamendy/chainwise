@@ -1,9 +1,8 @@
 # Chainwise with Bunzz X CELO
 
-![](https://github.com/iamendy/suve/blob/master/public/img/preview.gif)
-
-Live Demo - [YouTube](https://youtu.be/) <br />
+Live Demo - [YouTube](https://www.loom.com/share/954893c940a74b5292a3030785b10446?sid=19619be4-ec23-412a-8788-7d26ca21b150) <br />
 Live Link - [Chainwise](https://chainwise.vercel.app)
+Slides - [Slides](https://chainwise.vercel.app/ChainwiseDappDemo.pdf)
 
 ## ✨ Inspiration
 
@@ -27,7 +26,7 @@ We created 2 smart contracts in Solidity, [**Chainwise.sol**](https://github.com
 
 - The Chainwise contract handles the escrow, campaign creation and matching, and milestones tracking. This contract is deployed on CELO via - [https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code](https://alfajores.celoscan.io/address/0xc1eca9bdb6ab14674aed67a1884cc637525cfea1#code)
 
-- The ChainwiseVerificationBadge is used for on-chain verification. It is a soulbound NFT contract that is only after an influencer/community has succesfully delivered their first campaign. - 0x41469267878F9F0cF668A1bda2daB9CdB3838e26
+- The ChainwiseVerificationBadge is used for on-chain verification. It is a soulbound NFT contract that is only after an influencer/community has succesfully delivered their first campaign. - 0x460cD7D70445BE4d2787cc6CD8fE3399C0d61087
 
 For the front end, We used **`Celo Composer`** to bootstrap our project. Chainwise is built with **`NextJs/Typescript`**, **`Wagmi`**, **`Rainbowkit`**, **`Prisma`** and **`TailwindCSS`** .
 
