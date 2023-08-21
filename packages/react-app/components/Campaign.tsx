@@ -3,6 +3,7 @@ import { Bolt, Check, Twitter } from "./icons";
 import getDate from "../helpers/formatDate";
 import PendingCount from "./PendingCount";
 import { useRouter } from "next/router";
+import Verified from "./icons/Verified";
 
 const Campaign = ({ campaign }) => {
   const completed = campaign?.milestones.filter((d) => d.status == 2);
@@ -26,18 +27,19 @@ const Campaign = ({ campaign }) => {
           </small>
         </div>
 
-        <p className="text-gray-400">
+        <p className="text-gray-400 flex items-center gap-x-1">
           influencer •{" "}
           {campaign?.status > 0 ? (
-            <b className="text-black text-sm">
-              @{campaign?.assignedTo?.username}
+            <b className="text-black text-sm flex items-center gap-x-1">
+              @{campaign?.assignedTo?.username}{" "}
+              {campaign?.assignedTo.isVerified && <Verified />}
             </b>
           ) : (
             <b className="text-black text-sm">Not assigned</b>
           )}
         </p>
 
-        <div className="flex items-center gap-x-2 mt-2">
+        <div className="flex items-center gap-x-2 mt-4">
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
             <span>{campaign.amount} CELO</span>
           </div>

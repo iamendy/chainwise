@@ -7,6 +7,7 @@ import Milestones from "../../../components/influencer/Milestones";
 import { useQuery } from "@tanstack/react-query";
 import truncate from "../../../helpers/truncate";
 import BtnStatus from "../../../components/influencer/BtnStatus";
+import Verified from "../../../components/icons/Verified";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -51,8 +52,9 @@ const ViewCampaign = () => {
             ) : (
               <p className="text-gray-400">
                 Influencer •{" "}
-                <span className="text-black hover:underline cursor-pointer">
-                  @frankdegods{" "}
+                <span className="text-black hover:underline cursor-pointer flex items-center gap-x-1">
+                  {campaign?.assignedTo.username}{" "}
+                  {campaign?.assignedTo.isVerified && <Verified />}
                 </span>
               </p>
             )}

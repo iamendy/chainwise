@@ -6,6 +6,7 @@ import Milestones from "../../../components/creator/Milestones";
 import { useQuery } from "@tanstack/react-query";
 import PendingInfluencers from "../../../components/creator/PendingInfluencers";
 import { useRouter } from "next/router";
+import Verified from "../../../components/icons/Verified";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -49,15 +50,16 @@ const ViewCampaign = () => {
           <div>
             <h3 className="text-lg font-bold">{campaign?.name}</h3>
 
-            <p className="text-gray-400">
+            <p className="text-gray-400 flex items-center gap-x-1">
               Influencer •{" "}
               {campaign?.status > 0 ? (
                 <a
                   href={`https://twitter.com/${campaign?.assignedTo?.username}`}
                   target="_blank"
-                  className="text-black hover:underline cursor-pointer"
+                  className="text-black hover:underline cursor-pointer flex items-center gap-x-1"
                 >
                   @{campaign?.assignedTo?.username}
+                  {campaign?.assignedTo.isVerified && <Verified />}
                 </a>
               ) : (
                 <span className="text-gray-500">not assigned</span>
