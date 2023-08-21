@@ -288,7 +288,7 @@ export const connect = {
       type: "function",
     },
   ],
-  address: "0xB345D4C1216248225d6E300E4A359Ed6933EAFf5",
+  address: "0x8Cf6bA38CdF04aC72FF65c413DC1e8A827db3220",
 };
 
 export default connect;
