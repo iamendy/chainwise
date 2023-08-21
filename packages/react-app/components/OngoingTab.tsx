@@ -1,8 +1,10 @@
-import Link from "next/link";
-import { Twitter } from "./icons";
+import { Campaign as CampaignType } from "../types";
 import Campaign from "./Campaign";
 
-const OngoingTab = ({ campaigns }) => {
+interface Props {
+  campaigns: CampaignType[];
+}
+const OngoingTab = ({ campaigns }: Props) => {
   return (
     <>
       {campaigns?.length > 0 ? (

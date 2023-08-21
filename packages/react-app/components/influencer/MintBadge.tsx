@@ -7,9 +7,15 @@ import connect from "../../constants";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const MintBadge = ({ influencerAdd, refetch }) => {
+interface Props {
+  influencerAdd: `0x${string}` | undefined;
+  refetch: () => void;
+}
+
+const MintBadge = ({ influencerAdd, refetch }: Props) => {
   //Mint soulbound verification NFT for Influencer
   const { config } = usePrepareContractWrite({
+    //@ts-ignore
     address: connect.address,
     abi: connect.abi,
     functionName: "activateInfluencerVerification",

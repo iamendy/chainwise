@@ -9,6 +9,7 @@ interface Text {
 }
 
 const Text = ({ id, label, placeholder }: Text) => {
+  //@ts-ignore
   const { campaign, setCampaign } = useContext(CampaignContext);
 
   const {
@@ -22,7 +23,10 @@ const Text = ({ id, label, placeholder }: Text) => {
           <label className="text-sm font-medium " htmlFor={id}>
             {label}
           </label>
-          <small className="text-red-500">{errors?.[id]?.message}</small>
+          <small className="text-red-500">
+            {/* @ts-ignore */}
+            {errors?.[id]?.message}
+          </small>
         </div>
 
         <textarea

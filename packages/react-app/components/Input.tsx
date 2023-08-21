@@ -15,6 +15,7 @@ const Input = ({ id, label, placeholder, type = "text" }: Input) => {
     formState: { errors },
   } = useFormContext();
 
+  //@ts-ignore
   const { campaign, setCampaign } = useContext(CampaignContext);
 
   return (
@@ -23,7 +24,10 @@ const Input = ({ id, label, placeholder, type = "text" }: Input) => {
         <label className="text-sm font-medium" htmlFor={id}>
           {label}
         </label>
-        <small className="text-red-500">{errors?.[id]?.message}</small>
+        <small className="text-red-500">
+          {/* @ts-ignore */}
+          {errors?.[id]?.message}
+        </small>
       </div>
 
       <input

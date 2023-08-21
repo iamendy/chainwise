@@ -1,12 +1,19 @@
 import Link from "next/link";
-import { Bolt, Check, Twitter } from "./icons";
+import { Check } from "./icons";
 import getDate from "../helpers/formatDate";
 import PendingCount from "./PendingCount";
 import { useRouter } from "next/router";
 import Verified from "./icons/Verified";
+import { Campaign as CampaignType, Milestone } from "../types";
 
-const Campaign = ({ campaign }) => {
-  const completed = campaign?.milestones.filter((d) => d.status == 2);
+interface Props {
+  campaign: CampaignType;
+}
+
+const Campaign = ({ campaign }: Props) => {
+  const completed: Milestone[] | undefined = campaign?.milestones?.filter(
+    (d) => d.status == 2
+  );
   const router = useRouter();
 
   return (
@@ -32,7 +39,7 @@ const Campaign = ({ campaign }) => {
           {campaign?.status > 0 ? (
             <b className="text-black text-sm flex items-center gap-x-1">
               @{campaign?.assignedTo?.username}{" "}
-              {campaign?.assignedTo.isVerified && <Verified />}
+              {campaign?.assignedTo?.isVerified && <Verified />}
             </b>
           ) : (
             <b className="text-black text-sm">Not assigned</b>
@@ -46,7 +53,7 @@ const Campaign = ({ campaign }) => {
 
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
             <span>
-              {completed.length}/{campaign?.milestones?.length} milestones
+              {completed?.length}/{campaign?.milestones?.length} milestones
             </span>
           </div>
         </div>

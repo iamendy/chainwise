@@ -4,7 +4,7 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 
-const BtnStatus = ({ campaignId }) => {
+const BtnStatus = ({ campaignId }: { campaignId: string }) => {
   const [toggleApply, setToggleApply] = useState(false);
   const { address: influencerAdd } = useAccount();
   const queryClient = useQueryClient();

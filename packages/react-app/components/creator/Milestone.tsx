@@ -8,13 +8,18 @@ import {
   useWaitForTransaction,
 } from "wagmi";
 import connect from "../../constants";
+import { Milestone } from "../../types";
 
-const Milestone = ({ milestone, amountPerMilestone }) => {
+interface Props {
+  milestone: Milestone;
+  amountPerMilestone: number;
+}
+const Milestone = ({ milestone, amountPerMilestone }: Props) => {
   const [toggle, setToggle] = useState(false);
   const queryClient = useQueryClient();
 
   //decline approve
-  const decline = (e) => {
+  const decline = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     setToggle(false);
   };
@@ -36,6 +41,7 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
 
   //call on-chain function to match Influencer
   const { config } = usePrepareContractWrite({
+    //@ts-ignore
     address: connect.address,
     abi: connect.abi,
     functionName: "payMilestone",
@@ -57,7 +63,9 @@ const Milestone = ({ milestone, amountPerMilestone }) => {
     },
   });
 
-  const payMilestone = async (e) => {
+  const payMilestone = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     await writeAsync?.();
     mutate();

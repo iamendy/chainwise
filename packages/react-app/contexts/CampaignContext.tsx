@@ -21,6 +21,7 @@ export function CampaignProvider({ children }: { children: ReactNode }) {
 
   return (
     <CampaignContext.Provider
+      //@ts-ignore
       value={{
         step,
         setStep,

@@ -11,6 +11,7 @@ export default async function handler(
     try {
       const milestones = await prisma.milestones.findMany({
         where: {
+          //@ts-ignore
           campaignId,
         },
         include: {

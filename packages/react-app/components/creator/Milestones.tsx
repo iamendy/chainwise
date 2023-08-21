@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import Milestone from "./Milestone";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Milestone as MilestoneType } from "../../types";
 
-const Milestones = ({ campaignid, amount }) => {
+interface Props {
+  campaignid: string;
+  amount: number;
+}
+
+const Milestones = ({ campaignid, amount }: Props) => {
   const [amountPerMilestone, setAmountPerMilestone] = useState(0);
 
   const getMilestones = async () => {
@@ -26,7 +32,7 @@ const Milestones = ({ campaignid, amount }) => {
 
   return (
     <div className="border rounded-lg p-4 flex flex-col gap-y-4">
-      {milestones?.map((d, i) => (
+      {milestones?.map((d: MilestoneType, i: number) => (
         <Milestone
           milestone={d}
           amountPerMilestone={amountPerMilestone}

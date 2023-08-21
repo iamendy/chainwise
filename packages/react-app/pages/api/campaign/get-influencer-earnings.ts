@@ -11,6 +11,7 @@ export default async function handler(
     try {
       const earnings = await prisma.campaign.findMany({
         where: {
+          //@ts-ignore
           influencerAddress: address,
           status: 1,
         },
@@ -21,6 +22,7 @@ export default async function handler(
 
       //sum amounts
       const totalAmount = earnings.reduce((acc, current) => {
+        //@ts-ignore
         const amount = parseFloat(current.amount);
         if (!isNaN(amount)) {
           return acc + amount;

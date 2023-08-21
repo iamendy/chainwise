@@ -1,17 +1,22 @@
 import {
-  useAccount,
   useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
 import connect from "../../constants";
-import { Bolt, Select, Star, Twitter } from "../icons";
+import { Bolt, Select, Twitter } from "../icons";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Verified from "../icons/Verified";
+import { Influencer } from "../../types";
 
-const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
+interface Props {
+  pendingId: string;
+  campaignId: string;
+  influencer: Influencer | undefined;
+}
+const InfluencerCard = ({ pendingId, influencer, campaignId }: Props) => {
   const queryClient = useQueryClient();
 
   const acceptInfluencer = async () => {
@@ -24,7 +29,8 @@ const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
     return data;
   };
 
-  const { data: res } = useContractRead({
+  const { data: res }: { data: Array<string> | undefined } = useContractRead({
+    //@ts-ignore
     address: connect.address,
     abi: connect.abi,
     functionName: influencer && "influencers",
@@ -44,6 +50,7 @@ const InfluencerCard = ({ pendingId, influencer, campaignId }) => {
 
   //call on-chain function to match Influencer
   const { config } = usePrepareContractWrite({
+    //@ts-ignore
     address: connect.address,
     abi: connect.abi,
     functionName: "matchCampaign",

@@ -56,4 +56,3 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage {
         return super.supportsInterface(interfaceId);
     }
 }
-

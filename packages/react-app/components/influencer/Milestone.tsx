@@ -2,13 +2,24 @@ import axios from "axios";
 import { RoundCheck, Check } from "../icons";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Milestone } from "../../types";
 
-const Milestone = ({ milestone, amountPerMilestone, settledPerMilestone }) => {
+interface Props {
+  milestone: Milestone | undefined;
+  amountPerMilestone: number;
+  settledPerMilestone: number;
+}
+
+const Milestone = ({
+  milestone,
+  amountPerMilestone,
+  settledPerMilestone,
+}: Props) => {
   const [toggle, setToggle] = useState(false);
   const queryClient = useQueryClient();
 
   //decline approve
-  const decline = (e) => {
+  const decline = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     setToggle(false);
   };
@@ -31,13 +42,14 @@ const Milestone = ({ milestone, amountPerMilestone, settledPerMilestone }) => {
     },
   });
 
-  const handleUpdate = (e) => {
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     mutate();
   };
 
   const handleToggle = () => {
     //prevent clicking when campaign is not assigned
+    //@ts-ignore
     if (milestone?.campaign?.status > 0) {
       setToggle(true);
     }
@@ -47,9 +59,9 @@ const Milestone = ({ milestone, amountPerMilestone, settledPerMilestone }) => {
     <div
       onClick={() => handleToggle()}
       className={`${
-        milestone.status == 2
+        milestone?.status == 2
           ? "text-gray-500 line-through pointer-events-none"
-          : milestone.status == 1
+          : milestone?.status == 1
           ? "text-gray-500 pointer-events-none"
           : ""
       } relative flex  p-2 rounded-md items-center justify-between px-2`}

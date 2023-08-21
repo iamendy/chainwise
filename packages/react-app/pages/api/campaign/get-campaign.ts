@@ -9,6 +9,7 @@ export default async function handler(
     try {
       const campaign = await prisma.campaign.findFirst({
         where: {
+          //@ts-ignore
           id: req?.query.id,
         },
         include: {

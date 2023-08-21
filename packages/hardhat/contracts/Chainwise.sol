@@ -112,7 +112,6 @@ contract Chainwise is Ownable {
         require(influencers[influencer].isVerified, "You need to complete deliver a campaign first!");
         require(!influencers[influencer].hasMinted, "Already minted!");
 
-
         //call verification contract to mint badge
         verificationBadge.safeMint(influencer);
         influencers[influencer].hasMinted = true;

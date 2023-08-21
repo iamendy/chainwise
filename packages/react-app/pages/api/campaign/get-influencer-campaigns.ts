@@ -11,6 +11,7 @@ export default async function handler(
     try {
       const campaigns = await prisma.campaign.findMany({
         where: {
+          //@ts-ignore
           influencerAddress: address,
         },
         include: {

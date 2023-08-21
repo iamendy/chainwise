@@ -13,6 +13,7 @@ import Rating from "../../components/influencer/Rating";
 import connect from "../../constants";
 import MintBadge from "../../components/influencer/MintBadge";
 import Verified from "../../components/icons/Verified";
+import { Campaign } from "../../types";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Ongoing");
@@ -35,23 +36,30 @@ const Dashboard = () => {
     queryFn: getCampaigns,
   });
 
-  const { data: res, refetch } = useContractRead({
-    address: connect.address,
-    abi: connect.abi,
-    functionName: address && "influencers",
-    enabled: true,
-    args: [address],
-  });
+  const {
+    data: res,
+    refetch,
+  }: { data: Array<boolean> | undefined; refetch: () => void } =
+    useContractRead({
+      //@ts-ignore
+      address: connect.address,
+      abi: connect.abi,
+      functionName: address && "influencers",
+      enabled: true,
+      args: [address],
+    });
 
   //filter campaigns by status
-  const completed = campaigns?.filter((d) => d.status == 1);
-  const ongoing = campaigns?.filter((d) => d.status == 2);
+  const completed = campaigns?.filter((d: Campaign) => d.status == 1);
+  const ongoing = campaigns?.filter((d: Campaign) => d.status == 2);
 
   //retrieve amounts
-  const amounts = campaigns?.filter((d) => d.status >= 0).map((d) => d.amount);
+  const amounts = campaigns
+    ?.filter((d: Campaign) => d.status >= 0)
+    .map((d: Campaign) => d.amount);
 
   //sum amounts
-  const total = amounts?.reduce((acc, currentValue) => {
+  const total = amounts?.reduce((acc: number, currentValue: string) => {
     return acc + parseFloat(currentValue);
   }, 0);
 
@@ -59,6 +67,7 @@ const Dashboard = () => {
     <>
       <div className="mb-6 flex justify-between items-center">
         <h3 className="flex items-center gap-x-1">
+          {/* @ts-ignore */}
           Welcome {session?.user?.username}{" "}
           {res && res[0] && res[1] && <Verified />}
         </h3>

@@ -1,8 +1,7 @@
-import Link from "next/link";
-import { Bolt, Twitter } from "../../components/icons";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Campaign from "../../components/influencer/Campaign";
+import { Campaign as CampaignType } from "../../types";
 
 const ViewCampaigns = () => {
   const getActiveCamapigns = async () => {
@@ -21,7 +20,7 @@ const ViewCampaigns = () => {
       <div className="mt-5 rounded-xl bg-white p-4 shadow">
         {campaigns?.length > 0 ? (
           <div className="lg:grid lg:grid-cols-2 gap-3">
-            {campaigns?.map((d, i) => (
+            {campaigns?.map((d: CampaignType, i: number) => (
               <Campaign key={i} campaign={d} />
             ))}
           </div>

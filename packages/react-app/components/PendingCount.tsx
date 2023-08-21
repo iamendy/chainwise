@@ -2,7 +2,7 @@ import axios from "axios";
 import { Bolt } from "./icons";
 import { useQuery } from "@tanstack/react-query";
 
-const PendingCount = ({ campaignId }) => {
+const PendingCount = ({ campaignId }: { campaignId: string }) => {
   const getPendingCount = async () => {
     const { data } = await axios.get(
       `/api/campaign/get-pending-count?campaignId=${campaignId}`

@@ -6,6 +6,7 @@ import axios from "axios";
 
 const AddMilestones = () => {
   const steps = ["Milestone", "Payment"];
+  //@ts-ignore
   const { campaign, setStep, setMilestoneCount } = useContext(CampaignContext);
 
   const [milestones, setMilestones] = useState([
@@ -64,6 +65,7 @@ const AddMilestones = () => {
 
         //reset milestone
         setMilestones({
+          //@ts-ignore
           id: 1,
           title: "",
           description: "",
@@ -76,11 +78,15 @@ const AddMilestones = () => {
   };
 
   //when a milestone filed is updated
-  const handleUpdate = (e, i: number) => {
+  const handleUpdate = (
+    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
+    i: number
+  ) => {
     //get milestone
     const milestone = milestones[i];
 
     //update milestone value
+    //@ts-ignore
     const updatedVal = { ...milestone, [e.target.id]: e.target.value };
 
     //add new milestone
@@ -124,6 +130,7 @@ const AddMilestones = () => {
                       Title
                     </label>
                     <small className="text-red-500">
+                      {/* @ts-ignore */}
                       {errors?.[`title${d?.id}`]?.message}
                     </small>
                   </div>
@@ -152,6 +159,7 @@ const AddMilestones = () => {
                       Description
                     </label>
                     <small className="text-red-500">
+                      {/* @ts-ignore */}
                       {errors?.[`description${d?.id}`]?.message}
                     </small>
                   </div>

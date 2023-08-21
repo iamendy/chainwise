@@ -11,6 +11,7 @@ export default async function handler(
     try {
       const applied = await prisma.influencerCampaign.findMany({
         where: {
+          //@ts-ignore
           campaignId,
         },
       });

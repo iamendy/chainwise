@@ -1,8 +1,12 @@
 import Link from "next/link";
-import { Bolt, Twitter } from "./icons";
 import Campaign from "./Campaign";
+import { Campaign as CampaignType } from "../types";
 
-const PendingTab = ({ campaigns }) => {
+interface Props {
+  campaigns: CampaignType[];
+}
+
+const PendingTab = ({ campaigns }: Props) => {
   return (
     <>
       {campaigns?.length > 0 ? (

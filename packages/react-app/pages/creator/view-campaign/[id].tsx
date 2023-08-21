@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import PendingInfluencers from "../../../components/creator/PendingInfluencers";
 import { useRouter } from "next/router";
 import Verified from "../../../components/icons/Verified";
+import { Milestone } from "../../../types";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -23,7 +24,9 @@ const ViewCampaign = () => {
     queryFn: getCampaign,
   });
 
-  const completed = campaign?.milestones?.filter((d) => d.status == 2);
+  const completed = campaign?.milestones?.filter(
+    (d: Milestone) => d.status == 2
+  );
 
   return (
     <>

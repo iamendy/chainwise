@@ -11,6 +11,7 @@ import OngoingTab from "../../components/OngoingTab";
 import CompletedTab from "../../components/CompletedTab";
 import { useQuery } from "@tanstack/react-query";
 import PendingCampaign from "../../components/PendingCampaign";
+import { Campaign } from "../../types";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Pending");
@@ -33,15 +34,17 @@ const Dashboard = () => {
   });
 
   //filter campaigns by status
-  const pending = campaigns?.filter((d) => d.status == 0);
-  const completed = campaigns?.filter((d) => d.status == 1);
-  const ongoing = campaigns?.filter((d) => d.status == 2);
+  const pending = campaigns?.filter((d: Campaign) => d.status == 0);
+  const completed = campaigns?.filter((d: Campaign) => d.status == 1);
+  const ongoing = campaigns?.filter((d: Campaign) => d.status == 2);
 
   //retrieve amounts
-  const amounts = campaigns?.filter((d) => d.status >= 0).map((d) => d.amount);
+  const amounts = campaigns
+    ?.filter((d: Campaign) => d.status >= 0)
+    .map((d: Campaign) => d.amount);
 
   //sum amounts
-  const total = amounts?.reduce((acc, currentValue) => {
+  const total = amounts?.reduce((acc: number, currentValue: string) => {
     return acc + parseFloat(currentValue);
   }, 0);
 

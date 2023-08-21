@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import truncate from "../../../helpers/truncate";
 import BtnStatus from "../../../components/influencer/BtnStatus";
 import Verified from "../../../components/icons/Verified";
+import { Milestone } from "../../../types";
 
 const ViewCampaign = () => {
   const router = useRouter();
@@ -25,7 +26,9 @@ const ViewCampaign = () => {
   });
 
   //get completed milestones count
-  const completed = campaign?.milestones?.filter((d) => d.status == 2);
+  const completed = campaign?.milestones?.filter(
+    (d: Milestone) => d.status == 2
+  );
 
   return (
     <>

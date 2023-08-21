@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 const MakePayment = () => {
+  //@ts-ignore
   const { campaign, setCampaign, setMilestoneCount, setStep, milestoneCount } =
     useContext(CampaignContext);
   const [amount, setAmount] = useState("0.2");
@@ -26,10 +27,12 @@ const MakePayment = () => {
     formState: { errors },
   } = useForm();
   const { config } = usePrepareContractWrite({
+    //@ts-ignore
     address: connect.address,
     abi: connect.abi,
     functionName: "activateCampaign",
     args: [campaign?.id, milestoneCount],
+    //@ts-ignore
     value: ethers.utils.parseEther(debouncedAmount || "0"),
   });
 

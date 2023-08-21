@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { Bolt, Twitter } from "../icons";
 import getDate from "../../helpers/formatDate";
+import { Campaign, Milestone } from "../../types";
 
-const Campaign = ({ campaign }) => {
-  const completed = campaign?.milestones.filter((d) => d.status == 2);
+interface Props {
+  campaign: Campaign;
+}
+
+const Campaign = ({ campaign }: Props) => {
+  const completed = campaign?.milestones?.filter(
+    (d: Milestone) => d.status == 2
+  );
 
   return (
     <Link
@@ -26,7 +32,7 @@ const Campaign = ({ campaign }) => {
 
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
             <span>
-              {completed.length}/{campaign?.milestones?.length} milestones
+              {completed?.length}/{campaign?.milestones?.length} milestones
             </span>
           </div>
         </div>

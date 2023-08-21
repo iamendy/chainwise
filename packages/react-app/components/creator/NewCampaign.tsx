@@ -15,6 +15,7 @@ type Props = {
 };
 
 const NewCampaign = () => {
+  //@ts-ignore
   const { campaign, setStep, setCampaign } = useContext(CampaignContext);
 
   const methods = useForm();
