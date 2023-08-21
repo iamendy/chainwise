@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 
-contract ChainWiseBadge is ERC721, ERC721URIStorage {
+contract ChainwiseVerificationBadge is ERC721, ERC721URIStorage {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -26,7 +26,7 @@ contract ChainWiseBadge is ERC721, ERC721URIStorage {
         _tokenIdCounter.increment();
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, "google.com/image");
+        _setTokenURI(tokenId, "https://bafybeiaovcphcjqf7y52v6e6bukooewlzkidopw6ntxllgrt6scfxeycci.ipfs.nftstorage.link/Badge.svg");
     }
 
     function burn(uint256 tokenId) external {
