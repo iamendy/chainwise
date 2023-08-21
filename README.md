@@ -19,9 +19,8 @@ We have developed a prototype application on Celo blockchain testnet.
 
 You can view the [Demo](https://chainwise.vercel.app/) here.
 
-```bash
-   Please note that this a demo application, so some of the features may not work as expected.
-```
+> [!NOTE]
+> Please note that this a demo application, so some of the features may not work as expected.
 
 ## Contract Address
 
@@ -40,14 +39,14 @@ require decentralization.
 
 The CHAINWISE Dapp is comprised of two major parts:
 
--   ### Product Creators
--   ### Web3 Influencers
+-   #### Product Creators
+-   #### Web3 Influencers
 
--   #### Product Creators:
+-   ### Product Creators:
     They are of the core entity in this project. Creators get to simply enlist
     their product/app as campaign on the platform. Once enlisted, it should be
     available for influencers to see and make request.
--   #### Web3 Influencers:
+-   ### Web3 Influencers:
     Upon registration using valid authenticator means, the platform allows
     influencers to be able to choose/request for a product to campaign or
     promote for. Each campaign requires at least a milestone to be fulfilled and
@@ -60,4 +59,4 @@ We have added a mechanism for scoring and rating influencers based on their
 performance. Additionally, influencers get to own a mintable soul bound token as
 badge of verified influencer on the platform.
 
-![NFT Token](/react-app/public/Badge.png)
+![NFT Token](/packages/react-app/public/Badge.png)
