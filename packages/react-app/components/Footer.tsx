@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
           <div className="mt-4">
             <p className="text-base font-semibold text-gray-700">
-              © 2023 Bunzz X Celo
+              © 2023 Chainwise Inc
             </p>
           </div>
         </div>
