@@ -27,7 +27,7 @@ const Campaign = ({ campaign }: Props) => {
         <p className=" truncate pr-2">{campaign?.description}</p>
         <div className="flex items-center gap-x-2 mt-2">
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-            <span>{campaign.amount} CELO</span>
+            <span>{campaign.amount} MATIC</span>
           </div>
 
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
