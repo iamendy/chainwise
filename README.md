@@ -1,6 +1,6 @@
 # Chainwise
 
-Live Demo - [Loom](https://www.loom.com/share/954893c940a74b5292a3030785b10446?sid=19619be4-ec23-412a-8788-7d26ca21b150) <br />
+Live Demo - [Loom](https://www.loom.com/share/cfcd06012c2d488fb1b97115dcf2b290?sid=5a04c13f-c4d1-47e4-b984-4dd785d33f49) <br />
 Live Link - [Chainwise](https://chainwise.vercel.app) <br />
 Slides - [Slides](https://chainwise.vercel.app/ChainwiseDappDemo.pdf)
 
