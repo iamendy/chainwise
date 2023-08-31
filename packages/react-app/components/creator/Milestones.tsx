@@ -42,7 +42,7 @@ const Milestones = ({ campaignid, amount }: Props) => {
 
       <div className="bg-gray-100 p-2 flex justify-between items-center rounded-lg">
         <span className="font-bold">Total </span>
-        <span>{amount} CELO</span>
+        <span>{amount} MATIC</span>
       </div>
     </div>
   );

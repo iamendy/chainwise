@@ -64,7 +64,7 @@ const Milestones = ({ campaignid, amount }: Props) => {
       <div className="bg-gray-100 p-2 rounded-lg">
         <div className="flex justify-between items-center">
           <span className="font-bol">Total </span>
-          <span>{amount} CELO</span>
+          <span>{amount} MATIC</span>
         </div>
 
         <div className="flex justify-between items-center">
@@ -75,7 +75,7 @@ const Milestones = ({ campaignid, amount }: Props) => {
         <div className="flex justify-between items-center">
           <span className="font-bold">You&apos;ll receive </span>
           <span>
-            {totalPayment && ethers.utils.formatEther(totalPayment)} CELO
+            {totalPayment && ethers.utils.formatEther(totalPayment)} MATIC
           </span>
         </div>
       </div>
