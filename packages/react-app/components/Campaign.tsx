@@ -48,7 +48,7 @@ const Campaign = ({ campaign }: Props) => {
 
         <div className="flex items-center gap-x-2 mt-4">
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">
-            <span>{campaign.amount} CELO</span>
+            <span>{campaign.amount} MATIC</span>
           </div>
 
           <div className="bg-gray-200 w-fit p-2 flex items-center gap-x-1 leading-none text-[12px] rounded-sm">

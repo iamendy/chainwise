@@ -63,7 +63,7 @@ const Dashboard = () => {
             <Card />
           </div>
           <div>
-            <b>{total || 0} CELO</b>
+            <b>{total || 0} MATIC</b>
             <p className="text-[14px]"> Marketing goals </p>
           </div>
         </div>

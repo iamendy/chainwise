@@ -25,7 +25,7 @@ const Earnings = () => {
         <Card />
       </div>
       <div>
-        <b> {earnings} CELO</b>
+        <b> {earnings} MATIC</b>
         <p className="text-[14px]"> Delivery Earnings </p>
       </div>
     </div>
