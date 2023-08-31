@@ -67,7 +67,7 @@ const Faq = () => {
               </p>
 
               <p className="text-gray-500 mt-2">
-                After an Influencer's first delivered campaign, they'll be
+                After an Influencer&#39;s first delivered campaign, they'll be
                 allowed to mint Chainwise Verification Badge - a soulbound token
                 that serves as on-chain Verification.
               </p>
