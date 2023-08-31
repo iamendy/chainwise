@@ -1,38 +1,26 @@
 {
-    "name": "chainwise",
-    "version": "1.0.0",
-    "description": "Custom Celo Composer project.",
-    "private": true,
-    "author": "Celo",
-    "license": "MIT",
-    "scripts": {
-        "react-app:dev": "yarn workspace @chainwise/react-app dev",
-        "react-app:build": "yarn workspace @chainwise/react-app build",
-        "react-app:start": "yarn workspace @chainwise/react-app start",
-        "react-app:lint": "yarn workspace @chainwise/react-app lint",
-        "hardhat:test": "yarn workspace @chainwise/hardhat test",
-        "hardhat:test-local": "yarn workspace @chainwise/hardhat test-local",
-        "hardhat:create-account": "yarn workspace @chainwise/hardhat create-account",
-        "hardhat:accounts": "yarn workspace @chainwise/hardhat accounts",
-        "hardhat:devchain": "yarn workspace @chainwise/hardhat devchain",
-        "hardhat:deploy": "yarn workspace @chainwise/hardhat deploy",
-        "hardhat:deploy-reset-watch": "yarn workspace @chainwise/hardhat deploy-reset-watch",
-        "hardhat:watch": "yarn workspace @chainwise/hardhat watch",
-        "hardhat:fork-mainnet": "yarn workspace @chainwise/hardhat fork-mainnet"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/celo-org/celo-composer.git"
-    },
-    "bugs": {
-        "url": "https://github.com/celo-org/celo-composer/issues"
-    },
-    "homepage": "https://github.com/celo-org/celo-composer/blob/main/README.md",
-    "workspaces": [
-        "packages/*"
-    ],
-    "keywords": [
-        "celo-composer",
-        "celo"
-    ]
+  "name": "chainwise",
+  "version": "1.0.0",
+  "description": "Chainwise project.",
+  "private": true,
+  "author": "Chainwise",
+  "license": "MIT",
+  "scripts": {
+    "react-app:dev": "yarn workspace @chainwise/react-app dev",
+    "react-app:build": "yarn workspace @chainwise/react-app build",
+    "react-app:start": "yarn workspace @chainwise/react-app start",
+    "react-app:lint": "yarn workspace @chainwise/react-app lint",
+    "hardhat:test": "yarn workspace @chainwise/hardhat test",
+    "hardhat:test-local": "yarn workspace @chainwise/hardhat test-local",
+    "hardhat:create-account": "yarn workspace @chainwise/hardhat create-account",
+    "hardhat:accounts": "yarn workspace @chainwise/hardhat accounts",
+    "hardhat:devchain": "yarn workspace @chainwise/hardhat devchain",
+    "hardhat:deploy": "yarn workspace @chainwise/hardhat deploy",
+    "hardhat:deploy-reset-watch": "yarn workspace @chainwise/hardhat deploy-reset-watch",
+    "hardhat:watch": "yarn workspace @chainwise/hardhat watch",
+    "hardhat:fork-mainnet": "yarn workspace @chainwise/hardhat fork-mainnet"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

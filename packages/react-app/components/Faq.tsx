@@ -26,7 +26,7 @@ const Faq = () => {
             <div className="px-4 pb-5 sm:px-6 sm:pb-6">
               <p className="text-gray-500">
                 Connect your wallet, create a campaign, set milestones and
-                deposit $CELO.
+                deposit $MATIC.
               </p>
             </div>
           </div>
@@ -44,7 +44,7 @@ const Faq = () => {
             <div className="px-4 pb-5 sm:px-6 sm:pb-6">
               <p className="text-gray-500">
                 Connect your wallet, browse through active campaigns and select
-                your most applicable.
+                your most applicable one.
               </p>
             </div>
           </div>
@@ -64,6 +64,12 @@ const Faq = () => {
                 The creator selects a preferred influencer, and the influencer
                 gets paid as they reach set milestones. The more deliveries, the
                 better the influencer on-chain ratings.
+              </p>
+
+              <p className="text-gray-500 mt-2">
+                After an Influencer's first delivered campaign, they'll be
+                allowed to mint Chainwise Verification Badge - a soulbound token
+                that serves as on-chain Verification.
               </p>
             </div>
           </div>
