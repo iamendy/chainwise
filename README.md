@@ -24,9 +24,9 @@ After their first successful campaign delivery, the influencer/community can min
 
 We created 2 smart contracts in Solidity, [**Chainwise.sol**](https://github.com/iamendy/chainwise/blob/main/packages/hardhat/contracts/Chainwise.sol) and [**ChainwiseVerificationBadge.sol**](https://github.com/iamendy/chainwise/blob/main/packages/hardhat/contracts/ChainwiseVerificationBadge.sol).
 
-- The Chainwise contract handles the escrow, campaign creation and matching, and milestones tracking. This contract is deployed on Polygon - [https://polygonscan.com//address/](https://polygonscan.com//address/)
+- The Chainwise contract handles the escrow, campaign creation and matching, and milestones tracking. This contract is deployed on Polygon - [View on Mumbai](https://mumbai.polygonscan.com/address/0x2eA8d5e7c0e16Be970e75578Bec7Fbe6ae13B97c)
 
-- The ChainwiseVerificationBadge is used for on-chain verification. It is a soulbound NFT contract that is only after an influencer/community has succesfully delivered their first campaign. - 0x..
+- The ChainwiseVerificationBadge is used for on-chain verification. It is a soulbound NFT contract that can only be minted after an influencer/community has succesfully delivered their first campaign. [View on Mumbai](https://mumbai.polygonscan.com/address/0x47A015E6d0a22FA163eA9c6509F37FEA65146C14)
 
 For the front end, We used **`NextJs/Typescript`**, **`Wagmi`**, **`Rainbowkit`**, **`Prisma`** and **`TailwindCSS`** .
 
