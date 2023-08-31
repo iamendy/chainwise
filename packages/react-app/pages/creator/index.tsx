@@ -2,16 +2,17 @@ import CreatorLayout from "../../components/layouts/CreatorLayout";
 import { Tasks, Completed, Card, Twitter, Bolt } from "../../components/icons";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import axios from "axios";
 import OngoingCampaign from "../../components/OngoingCampaign";
 import CompletedCampaign from "../../components/CompletedCampaign";
 import PendingTab from "../../components/PendingTab";
 import OngoingTab from "../../components/OngoingTab";
 import CompletedTab from "../../components/CompletedTab";
-import { useQuery } from "@tanstack/react-query";
+import { isError, useQuery } from "@tanstack/react-query";
 import PendingCampaign from "../../components/PendingCampaign";
 import { Campaign } from "../../types";
+import connect from "../../constants";
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Pending");
