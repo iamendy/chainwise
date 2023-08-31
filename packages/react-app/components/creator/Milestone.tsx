@@ -109,7 +109,7 @@ const Milestone = ({ milestone, amountPerMilestone }: Props) => {
       </div>
       <div className="flex items-center gap-x-2">
         <div>
-          {Math.round((amountPerMilestone + Number.EPSILON) * 100) / 100} CELO
+          {Math.round((amountPerMilestone + Number.EPSILON) * 100) / 100} MATIC
         </div>
         {/* Milestone must be ongoing */}
         {milestone?.status == 1 && (

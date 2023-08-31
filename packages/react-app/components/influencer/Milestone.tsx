@@ -99,7 +99,7 @@ const Milestone = ({
         <div className="flex flex-col text-right">
           <span>
             {settledPerMilestone && parseFloat(settledPerMilestone.toFixed(4))}{" "}
-            CELO{" "}
+            MATIC{" "}
           </span>
         </div>
         {milestone?.campaign?.status == 2 && (
