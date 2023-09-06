@@ -1,4 +1,4 @@
-# Chainwise
+# Chainwise x Polygon DevX [EMEA] 
 
 Live Demo - [Loom](https://www.loom.com/share/cfcd06012c2d488fb1b97115dcf2b290?sid=5a04c13f-c4d1-47e4-b984-4dd785d33f49) <br />
 Live Link - [Chainwise](https://chainwise.vercel.app) <br />
